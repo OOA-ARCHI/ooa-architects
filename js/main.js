@@ -82,9 +82,81 @@
     });
   }
 
+  /* ---------- Project gallery slideshows ----------
+     Each [data-slideshow] instance (one per project entry) tracks its own
+     active index independently — navigating one project's gallery never
+     affects any other project on the page. */
+  function initSlideshows() {
+    var shows = document.querySelectorAll("[data-slideshow]");
+
+    shows.forEach(function (show) {
+      var track = show.querySelector(".slideshow-track");
+      var slides = show.querySelectorAll("[data-slide]");
+      var dots = show.querySelectorAll(".slide-dot");
+      var prevBtn = show.querySelector(".slide-prev");
+      var nextBtn = show.querySelector(".slide-next");
+      var count = slides.length;
+      var active = 0;
+
+      if (!track || count === 0) return;
+
+      function render() {
+        track.style.setProperty("--active", active);
+
+        slides.forEach(function (slide, i) {
+          var isActive = i === active;
+          slide.classList.toggle("is-active", isActive);
+          slide.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        dots.forEach(function (dot, i) {
+          var isActive = i === active;
+          dot.classList.toggle("is-active", isActive);
+          dot.setAttribute("aria-selected", String(isActive));
+        });
+      }
+
+      function goTo(index) {
+        active = (index + count) % count;
+        render();
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          goTo(active - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          goTo(active + 1);
+        });
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () {
+          goTo(i);
+        });
+      });
+
+      show.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          goTo(active - 1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          goTo(active + 1);
+        }
+      });
+
+      render();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSidebarToggle();
     initSmoothScroll();
     scrollToInitialHash();
+    initSlideshows();
   });
 })();

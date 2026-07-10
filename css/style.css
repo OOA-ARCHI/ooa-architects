@@ -1,11 +1,12 @@
 /* ==========================================================================
    OOA Architects — Stylesheet
-   Fixed left sidebar + main content shell, IBM Plex Mono (Google Fonts) for
-   navigation/UI/body copy, system sans-serif stack for large display headings.
+   Fixed left sidebar + main content shell. IBM Plex Mono (Google Fonts) is
+   reserved for UI chrome — nav, meta lists, labels, captions, small print.
+   Archivo (Google Fonts) drives display headings and reading body copy.
    No build tooling — plain CSS.
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 /* ---------- Design Tokens ---------- */
 :root {
@@ -25,7 +26,7 @@
 
   /* Typography */
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --font-sans: -apple-system, "Helvetica Neue", Arial, "Malgun Gothic",
+  --font-sans: "Archivo", -apple-system, "Helvetica Neue", Arial, "Malgun Gothic",
     "Apple SD Gothic Neo", sans-serif;
 
   /* Spacing */
@@ -114,7 +115,8 @@ dd {
 .heading-xl {
   font-family: var(--font-sans);
   font-size: clamp(2.25rem, 5vw + 1rem, 4.2rem);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   color: var(--c-text-1);
 }
@@ -122,7 +124,8 @@ dd {
 .heading-lg {
   font-family: var(--font-sans);
   font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.15;
   color: var(--c-text-1);
 }
@@ -130,20 +133,35 @@ dd {
 .heading-md {
   font-family: var(--font-sans);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   color: var(--c-text-1);
 }
 
+/* Reading body copy — Archivo, comfortable line-height. Mono is reserved
+   for UI chrome (nav, meta lists, labels, captions, small print). */
 .body-copy {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  line-height: 1.2;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: var(--c-text-1);
   max-width: 62ch;
 }
 
-/* Signature accent chip: black bg + yellow-green text */
+/* Small print / disclaimers — stays on mono, sized like other UI chrome */
+.small-print {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--c-text-3);
+  max-width: 62ch;
+}
+
+/* Signature accent chip: black bg + yellow-green text.
+   Reserved for rare moments — the sidebar category tags and one hero
+   accent on the homepage. Everyday repeated labels use .tag-label instead. */
 .tag-chip {
   display: inline-block;
   background-color: var(--c-chip-bg);
@@ -151,6 +169,18 @@ dd {
   padding: 0.1em 0.4em;
   font-size: 0.65rem;
   letter-spacing: -0.01em;
+}
+
+/* Quiet label variant for repeated per-item tags (project archive entries).
+   No accent background — plain uppercase text with a hairline underline. */
+.tag-label {
+  display: inline-block;
+  color: var(--c-text-3);
+  padding: 0.1em 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--c-line);
 }
 
 /* ---------- App Shell ---------- */
@@ -295,12 +325,18 @@ dd {
   color: var(--c-text-2);
   padding: 0.15em 0.3em;
   margin-inline-start: -0.3em;
+  border-radius: 2px;
+  transition: color 0.15s ease, background-color 0.15s ease, padding-inline-start 0.15s ease;
 }
 
+/* Quiet hover state — a soft tint + indent + teal text. The loud
+   black-chip/yellow-green treatment is reserved for rare accent moments
+   (nav category chips, single hero label), not a frequent hover state. */
 .project-list li a:hover,
 .project-list li a:focus-visible {
-  background-color: var(--c-chip-bg);
-  color: var(--c-accent);
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--c-teal);
+  padding-inline-start: 0.6em;
 }
 
 .nav-plain {
@@ -367,10 +403,49 @@ dd {
   margin-bottom: var(--space-6);
 }
 
+/* Home page: sparse-by-design layout (H1 + one hero visual). Center the
+   block vertically on larger screens so the space reads as intentional
+   minimalism rather than an unfinished page. */
+@media (min-width: 900px) {
+  .page-content--home {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+}
+
+.home-intro {
+  margin-bottom: var(--space-5);
+}
+
 .divider {
   border: none;
   border-top: 1px solid var(--c-line);
   margin: var(--space-4) 0;
+}
+
+/* ---------- Placeholder Surface: shared "atelier placeholder" treatment ----------
+   Every real-image slot (hero, gallery tiles, contact map) is a richer,
+   multi-stop gradient with a faint fine-line architectural overlay — read
+   as an intentional drafting/blueprint motif, not a loading skeleton. */
+.hero-visual,
+.gallery-tile,
+.contact-map {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-visual::before,
+.gallery-tile::before,
+.contact-map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.07) 0, rgba(255, 255, 255, 0.07) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.06) 0, rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 96px);
+  pointer-events: none;
 }
 
 /* ---------- Home Hero ---------- */
@@ -384,9 +459,20 @@ dd {
   width: 100%;
   max-width: var(--content-max);
   border-radius: 2px;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(150deg, #101010 0%, #3a3a3a 55%, #04a1b2 100%);
+  background: linear-gradient(
+    150deg,
+    #0b0b0b 0%,
+    #2a2723 30%,
+    #4c463d 55%,
+    #04a1b2 85%,
+    #0d2f33 100%
+  );
+  transition: transform 0.4s ease;
+}
+
+.hero-visual:hover,
+.hero-visual:focus-visible {
+  transform: scale(1.015);
 }
 
 .hero-visual .hero-visual-label {
@@ -412,11 +498,15 @@ dd {
 .gallery-tile {
   aspect-ratio: 4 / 3;
   border-radius: 2px;
-  position: relative;
-  overflow: hidden;
   display: flex;
   align-items: flex-end;
   padding: var(--space-1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-tile:hover,
+.gallery-tile:focus-visible {
+  transform: scale(1.015);
 }
 
 .gallery-tile .tile-index {
@@ -430,13 +520,24 @@ dd {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-.tile-a { background: linear-gradient(155deg, #1a1a1a, #5c5c5c); }
-.tile-b { background: linear-gradient(155deg, #202020, #04a1b2); }
-.tile-c { background: linear-gradient(155deg, #0d0d0d, #7a7a7a); }
-.tile-d { background: linear-gradient(155deg, #262626, #4a4a4a); }
+.tile-a {
+  background: linear-gradient(155deg, #131211 0%, #3a352e 45%, #6c6153 78%, #9c8f7c 100%);
+}
+
+.tile-b {
+  background: linear-gradient(155deg, #0e1719 0%, #163a40 42%, #04a1b2 76%, #7fd7df 100%);
+}
+
+.tile-c {
+  background: linear-gradient(155deg, #0c0c0c 0%, #2a2a2a 38%, #565656 70%, #8c8c8c 100%);
+}
+
+.tile-d {
+  background: linear-gradient(155deg, #1a1815 0%, #3f382c 42%, #6e6250 74%, #a89a86 100%);
+}
 
 /* ---------- Project Detail (two-column, project.html) ---------- */
 .project-entry {
@@ -529,9 +630,7 @@ dd {
   margin-top: var(--space-4);
   aspect-ratio: 16 / 6;
   border-radius: 2px;
-  background: linear-gradient(150deg, #1a1a1a, #5c5c5c);
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(150deg, #131110 0%, #322c24 40%, #5c5142 70%, #8f8171 100%);
   display: flex;
   align-items: flex-end;
   padding: var(--space-2);
@@ -548,7 +647,7 @@ dd {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
 }
 
 /* ---------- Links / Buttons ---------- */

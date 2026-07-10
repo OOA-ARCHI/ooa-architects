@@ -4,217 +4,412 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — OOA Architects</title>
-  <meta name="description" content="OOA Architects의 프로젝트 아카이브. 시수 하우스, 한마루 파빌리온, 듄 스튜디오, 리버라인 하우스 등 주거·상업·문화 공간 프로젝트를 소개합니다." />
+  <meta name="description" content="OOA Architects의 프로젝트 아카이브. 주거, 상업·리테일, 호스피탈리티, 오피스, 리노베이션, 공공·문화 프로젝트를 소개합니다." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="index.html">OOA Architects</a>
-      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="main-nav" aria-label="주 메뉴">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="project.html" aria-current="page">Projects</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="logo" href="index.html">OOA Architects</a>
+        <button class="sidebar-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <details class="nav-tree" open>
+        <summary>Project</summary>
+
+        <details class="nav-category">
+          <summary>주거 <span class="tag-chip">Residential</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#sisu-house">Sisu House</a></li>
+            <li><a href="project.html#maru-house">마루집 Maru House</a></li>
+            <li><a href="project.html#eunpyeon-house">은편 하우스 Eunpyeon House</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>상업·리테일 <span class="tag-chip">Commercial &amp; Retail</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#sobo-cafe">소보 카페 Sobo Café</a></li>
+            <li><a href="project.html#field-store">필드 스토어 Field Store</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>호스피탈리티 <span class="tag-chip">Hospitality</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#stillbay-hotel">스틸베이 호텔 Stillbay Hotel</a></li>
+            <li><a href="project.html#noseon-guesthouse">노선 게스트하우스 Noseon Guesthouse</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>오피스 <span class="tag-chip">Office</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#grid-office">그리드 오피스 Grid Office</a></li>
+            <li><a href="project.html#lineworks-studio">라인웍스 스튜디오 Lineworks Studio</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>리노베이션 <span class="tag-chip">Renovation</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#wonseodong-renovation">원서동 리노베이션 Wonseo-dong Renovation</a></li>
+            <li><a href="project.html#warehouse-remodel">창고 리모델링 Warehouse Remodel</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>공공·문화 <span class="tag-chip">Public &amp; Cultural</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#village-library">마을 도서관 Village Library</a></li>
+            <li><a href="project.html#riverside-pavilion">강변 파빌리온 Riverside Pavilion</a></li>
+          </ul>
+        </details>
+      </details>
+
+      <nav class="nav-plain" aria-label="보조 메뉴">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="section section--tight" aria-label="프로젝트 목록 소개">
-      <div class="container">
-        <p class="eyebrow">Archive</p>
-        <h1 class="heading-lg">Projects</h1>
-        <p class="body-lg" style="margin-top: var(--space-2);">
-          주거, 상업, 문화 시설을 아우르는 프로젝트 아카이브입니다. 각 프로젝트를 선택하면 상세 내용으로 이동합니다.
-        </p>
+      <div class="sidebar-contact">
+        <p>02-0000-0000 (placeholder)</p>
+        <p><a href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a></p>
       </div>
-    </section>
+    </aside>
 
-    <!-- Project index grid -->
-    <section class="section section--tight" aria-label="프로젝트 그리드">
-      <div class="container">
-        <div class="project-grid">
-          <a class="project-card" href="#sisu-house">
-            <div class="project-visual visual-01" role="img" aria-label="시수 하우스 대표 이미지 — 목재와 콘크리트가 어우러진 단독주택 외관">
-              <span class="project-number">01</span>
-            </div>
-            <div class="project-meta">
-              <span class="project-title">Sisu House</span>
-              <span class="project-category">단독주택</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="#hanmaru-pavilion">
-            <div class="project-visual visual-02" role="img" aria-label="한마루 파빌리온 대표 이미지 — 낮은 지붕선의 목조 파빌리온">
-              <span class="project-number">02</span>
-            </div>
-            <div class="project-meta">
-              <span class="project-title">Hanmaru Pavilion</span>
-              <span class="project-category">문화 시설</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="#dune-studio">
-            <div class="project-visual visual-03" role="img" aria-label="듄 스튜디오 대표 이미지 — 노출 콘크리트 상업 공간 외관">
-              <span class="project-number">03</span>
-            </div>
-            <div class="project-meta">
-              <span class="project-title">Dune Studio</span>
-              <span class="project-category">상업 공간</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="#riverline-house">
-            <div class="project-visual visual-04" role="img" aria-label="리버라인 하우스 대표 이미지 — 강변에 면한 주택 전경">
-              <span class="project-number">04</span>
-            </div>
-            <div class="project-meta">
-              <span class="project-title">Riverline House</span>
-              <span class="project-category">단독주택</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- Jump list -->
-    <nav class="container project-index" aria-label="프로젝트 바로가기">
-      <a href="#sisu-house">Sisu House</a>
-      <a href="#hanmaru-pavilion">Hanmaru Pavilion</a>
-      <a href="#dune-studio">Dune Studio</a>
-      <a href="#riverline-house">Riverline House</a>
-    </nav>
-
-    <!-- Project detail sections (full-bleed anchor targets) -->
-    <section id="sisu-house" class="project-detail detail-01" aria-labelledby="sisu-house-title">
-      <div class="container">
-        <div>
-          <p class="eyebrow">01 · 단독주택</p>
-          <h2 id="sisu-house-title" class="heading-lg">Sisu House</h2>
-          <p>
-            핀란드어로 '강인한 의지'를 뜻하는 시수(Sisu)에서 이름을 딴 이 주택은 경사 대지의 조건을 그대로 살려
-            노출 콘크리트와 목재가 대비를 이루는 저층형 단독주택입니다. 거실과 마당을 잇는 긴 처마가
-            사계절 빛의 각도를 조절합니다.
+    <main class="page-content">
+      <div class="content-col">
+        <section class="section" aria-label="프로젝트 목록 소개" style="margin-bottom: var(--space-4);">
+          <p class="eyebrow">Archive</p>
+          <h1 class="heading-lg" style="margin-top: 0.5em;">Projects</h1>
+          <p class="body-copy" style="margin-top: var(--space-2);">
+            주거, 상업·리테일, 호스피탈리티, 오피스, 리노베이션, 공공·문화 시설을 아우르는 프로젝트 아카이브입니다.
+            왼쪽 카테고리 트리 또는 아래 목록에서 프로젝트를 선택하면 상세 내용으로 이동합니다.
           </p>
-        </div>
-        <dl class="project-detail-facts">
-          <dt>위치</dt>
-          <dd>경기도 양평군 (예정지)</dd>
-          <dt>용도</dt>
-          <dd>단독주택</dd>
-          <dt>연면적</dt>
-          <dd>218 m² (placeholder)</dd>
-          <dt>진행 상태</dt>
-          <dd>설계 중 (placeholder)</dd>
-        </dl>
-      </div>
-    </section>
+        </section>
 
-    <section id="hanmaru-pavilion" class="project-detail detail-02" aria-labelledby="hanmaru-pavilion-title">
-      <div class="container">
-        <div>
-          <p class="eyebrow">02 · 문화 시설</p>
-          <h2 id="hanmaru-pavilion-title" class="heading-lg">Hanmaru Pavilion</h2>
-          <p>
-            낮은 지붕선과 깊은 처마를 가진 목조 파빌리온으로, 지역 커뮤니티를 위한 다목적 문화 공간을 제안합니다.
-            내부와 외부의 경계를 낮춰 계절과 날씨에 따라 열리고 닫히는 공간 구성을 목표로 합니다.
-          </p>
-        </div>
-        <dl class="project-detail-facts">
-          <dt>위치</dt>
-          <dd>강원도 인제군 (예정지)</dd>
-          <dt>용도</dt>
-          <dd>문화·커뮤니티 시설</dd>
-          <dt>연면적</dt>
-          <dd>640 m² (placeholder)</dd>
-          <dt>진행 상태</dt>
-          <dd>기획 단계 (placeholder)</dd>
-        </dl>
-      </div>
-    </section>
+        <nav class="archive-index" aria-label="프로젝트 바로가기">
+          <a href="#sisu-house">Sisu House</a>
+          <a href="#maru-house">마루집 Maru House</a>
+          <a href="#eunpyeon-house">은편 하우스 Eunpyeon House</a>
+          <a href="#sobo-cafe">소보 카페 Sobo Café</a>
+          <a href="#field-store">필드 스토어 Field Store</a>
+          <a href="#stillbay-hotel">스틸베이 호텔 Stillbay Hotel</a>
+          <a href="#noseon-guesthouse">노선 게스트하우스 Noseon Guesthouse</a>
+          <a href="#grid-office">그리드 오피스 Grid Office</a>
+          <a href="#lineworks-studio">라인웍스 스튜디오 Lineworks Studio</a>
+          <a href="#wonseodong-renovation">원서동 리노베이션 Wonseo-dong Renovation</a>
+          <a href="#warehouse-remodel">창고 리모델링 Warehouse Remodel</a>
+          <a href="#village-library">마을 도서관 Village Library</a>
+          <a href="#riverside-pavilion">강변 파빌리온 Riverside Pavilion</a>
+        </nav>
 
-    <section id="dune-studio" class="project-detail detail-03" aria-labelledby="dune-studio-title">
-      <div class="container">
-        <div>
-          <p class="eyebrow">03 · 상업 공간</p>
-          <h2 id="dune-studio-title" class="heading-lg">Dune Studio</h2>
-          <p>
-            노출 콘크리트와 모래빛 마감재로 구성된 복합 상업 공간입니다. 곡선형 진입 동선과 절제된 조명 계획을 통해
-            방문객이 머무는 속도를 자연스럽게 늦추는 것을 목표로 설계되었습니다.
-          </p>
-        </div>
-        <dl class="project-detail-facts">
-          <dt>위치</dt>
-          <dd>서울특별시 성동구 (예정지)</dd>
-          <dt>용도</dt>
-          <dd>상업 공간 (리테일 · 카페)</dd>
-          <dt>연면적</dt>
-          <dd>312 m² (placeholder)</dd>
-          <dt>진행 상태</dt>
-          <dd>시공 준비 (placeholder)</dd>
-        </dl>
-      </div>
-    </section>
+        <hr class="divider" style="margin-top: 0;" />
 
-    <section id="riverline-house" class="project-detail detail-04" aria-labelledby="riverline-house-title">
-      <div class="container">
-        <div>
-          <p class="eyebrow">04 · 단독주택</p>
-          <h2 id="riverline-house-title" class="heading-lg">Riverline House</h2>
-          <p>
-            강변에 면한 좁고 긴 대지 위에 계획된 주택으로, 수평으로 긴 매스와 수직 통창을 통해 강의 풍경을
-            실내 깊숙이 끌어들입니다. 프라이버시와 조망을 동시에 확보하는 레이어드 파사드가 특징입니다.
-          </p>
-        </div>
-        <dl class="project-detail-facts">
-          <dt>위치</dt>
-          <dd>경상남도 하동군 (예정지)</dd>
-          <dt>용도</dt>
-          <dd>단독주택</dd>
-          <dt>연면적</dt>
-          <dd>195 m² (placeholder)</dd>
-          <dt>진행 상태</dt>
-          <dd>설계 중 (placeholder)</dd>
-        </dl>
-      </div>
-    </section>
-  </main>
+        <!-- ===================== 주거 (Residential) ===================== -->
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <p class="logo" style="margin-bottom: var(--space-2);">OOA Architects</p>
-          <p class="contact-note">공간과 재료의 본질을 탐구하는 건축 설계 스튜디오</p>
-        </div>
-        <div class="footer-links">
-          <span class="eyebrow">Menu</span>
-          <a href="index.html">Home</a>
-          <a href="project.html">Projects</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div class="footer-links">
-          <span class="eyebrow">Connect</span>
-          <a href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-        </div>
+        <article id="sisu-house" class="project-entry" aria-labelledby="sisu-house-title">
+          <p class="eyebrow project-entry-title">01 · <span class="tag-chip">Residential</span></p>
+          <h2 id="sisu-house-title" class="heading-md" style="margin-top: 0.5em;">Sisu House</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>단독주택</dd>
+              <dt>프로그램(Program)</dt><dd>주거</dd>
+              <dt>대지위치(Site)</dt><dd>경기도 양평군</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-a" role="img" aria-label="Sisu House 외관 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="Sisu House 거실 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="Sisu House 마당 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="Sisu House 입면 상세 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="maru-house" class="project-entry" aria-labelledby="maru-house-title">
+          <p class="eyebrow project-entry-title">02 · <span class="tag-chip">Residential</span></p>
+          <h2 id="maru-house-title" class="heading-md" style="margin-top: 0.5em;">마루집 Maru House</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>단독주택</dd>
+              <dt>프로그램(Program)</dt><dd>주거</dd>
+              <dt>대지위치(Site)</dt><dd>강원도 홍천군</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-b" role="img" aria-label="마루집 외관 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="마루집 마루 공간 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="마루집 단면 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="마루집 야경 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="eunpyeon-house" class="project-entry" aria-labelledby="eunpyeon-house-title">
+          <p class="eyebrow project-entry-title">03 · <span class="tag-chip">Residential</span></p>
+          <h2 id="eunpyeon-house-title" class="heading-md" style="margin-top: 0.5em;">은편 하우스 Eunpyeon House</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>리모델링 주택</dd>
+              <dt>프로그램(Program)</dt><dd>주거 리노베이션</dd>
+              <dt>대지위치(Site)</dt><dd>서울특별시 은평구</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-d" role="img" aria-label="은편 하우스 외관 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="은편 하우스 내부 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="은편 하우스 계단실 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="은편 하우스 옥상 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================== 상업·리테일 (Commercial & Retail) ===================== -->
+
+        <article id="sobo-cafe" class="project-entry" aria-labelledby="sobo-cafe-title">
+          <p class="eyebrow project-entry-title">04 · <span class="tag-chip">Commercial &amp; Retail</span></p>
+          <h2 id="sobo-cafe-title" class="heading-md" style="margin-top: 0.5em;">소보 카페 Sobo Café</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>카페·리테일</dd>
+              <dt>프로그램(Program)</dt><dd>상업 공간</dd>
+              <dt>대지위치(Site)</dt><dd>서울특별시 성동구</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-a" role="img" aria-label="소보 카페 파사드 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="소보 카페 홀 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="소보 카페 카운터 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="소보 카페 좌석 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="field-store" class="project-entry" aria-labelledby="field-store-title">
+          <p class="eyebrow project-entry-title">05 · <span class="tag-chip">Commercial &amp; Retail</span></p>
+          <h2 id="field-store-title" class="heading-md" style="margin-top: 0.5em;">필드 스토어 Field Store</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>리테일 매장</dd>
+              <dt>프로그램(Program)</dt><dd>상업 공간</dd>
+              <dt>대지위치(Site)</dt><dd>경기도 파주시</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-b" role="img" aria-label="필드 스토어 외관 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="필드 스토어 진열대 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="필드 스토어 조명 계획 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="필드 스토어 입구 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================== 호스피탈리티 (Hospitality) ===================== -->
+
+        <article id="stillbay-hotel" class="project-entry" aria-labelledby="stillbay-hotel-title">
+          <p class="eyebrow project-entry-title">06 · <span class="tag-chip">Hospitality</span></p>
+          <h2 id="stillbay-hotel-title" class="heading-md" style="margin-top: 0.5em;">스틸베이 호텔 Stillbay Hotel</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>부티크 호텔</dd>
+              <dt>프로그램(Program)</dt><dd>호스피탈리티</dd>
+              <dt>대지위치(Site)</dt><dd>강원도 강릉시</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-c" role="img" aria-label="스틸베이 호텔 전경 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="스틸베이 호텔 로비 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="스틸베이 호텔 객실 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="스틸베이 호텔 테라스 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="noseon-guesthouse" class="project-entry" aria-labelledby="noseon-guesthouse-title">
+          <p class="eyebrow project-entry-title">07 · <span class="tag-chip">Hospitality</span></p>
+          <h2 id="noseon-guesthouse-title" class="heading-md" style="margin-top: 0.5em;">노선 게스트하우스 Noseon Guesthouse</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>게스트하우스</dd>
+              <dt>프로그램(Program)</dt><dd>호스피탈리티</dd>
+              <dt>대지위치(Site)</dt><dd>전라남도 순천시</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-d" role="img" aria-label="노선 게스트하우스 마당 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="노선 게스트하우스 공용 라운지 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="노선 게스트하우스 객실 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="노선 게스트하우스 외관 야경 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================== 오피스 (Office) ===================== -->
+
+        <article id="grid-office" class="project-entry" aria-labelledby="grid-office-title">
+          <p class="eyebrow project-entry-title">08 · <span class="tag-chip">Office</span></p>
+          <h2 id="grid-office-title" class="heading-md" style="margin-top: 0.5em;">그리드 오피스 Grid Office</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>사옥</dd>
+              <dt>프로그램(Program)</dt><dd>오피스</dd>
+              <dt>대지위치(Site)</dt><dd>서울특별시 강남구</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-a" role="img" aria-label="그리드 오피스 파사드 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="그리드 오피스 로비 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="그리드 오피스 업무 공간 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="그리드 오피스 회의실 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="lineworks-studio" class="project-entry" aria-labelledby="lineworks-studio-title">
+          <p class="eyebrow project-entry-title">09 · <span class="tag-chip">Office</span></p>
+          <h2 id="lineworks-studio-title" class="heading-md" style="margin-top: 0.5em;">라인웍스 스튜디오 Lineworks Studio</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>공유 오피스</dd>
+              <dt>프로그램(Program)</dt><dd>오피스</dd>
+              <dt>대지위치(Site)</dt><dd>서울특별시 마포구</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-b" role="img" aria-label="라인웍스 스튜디오 공용 라운지 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="라인웍스 스튜디오 좌석 배치 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="라인웍스 스튜디오 회의 부스 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="라인웍스 스튜디오 입면 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================== 리노베이션 (Renovation) ===================== -->
+
+        <article id="wonseodong-renovation" class="project-entry" aria-labelledby="wonseodong-renovation-title">
+          <p class="eyebrow project-entry-title">10 · <span class="tag-chip">Renovation</span></p>
+          <h2 id="wonseodong-renovation-title" class="heading-md" style="margin-top: 0.5em;">원서동 리노베이션 Wonseo-dong Renovation</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>한옥 리노베이션</dd>
+              <dt>프로그램(Program)</dt><dd>리노베이션</dd>
+              <dt>대지위치(Site)</dt><dd>서울특별시 종로구</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-c" role="img" aria-label="원서동 리노베이션 마당 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="원서동 리노베이션 툇마루 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="원서동 리노베이션 지붕 구조 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="원서동 리노베이션 내부 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="warehouse-remodel" class="project-entry" aria-labelledby="warehouse-remodel-title">
+          <p class="eyebrow project-entry-title">11 · <span class="tag-chip">Renovation</span></p>
+          <h2 id="warehouse-remodel-title" class="heading-md" style="margin-top: 0.5em;">창고 리모델링 Warehouse Remodel</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>산업시설 리모델링</dd>
+              <dt>프로그램(Program)</dt><dd>리노베이션</dd>
+              <dt>대지위치(Site)</dt><dd>인천광역시</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-d" role="img" aria-label="창고 리모델링 외관 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="창고 리모델링 트러스 구조 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="창고 리모델링 내부 공간 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="창고 리모델링 진입로 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================== 공공·문화 (Public & Cultural) ===================== -->
+
+        <article id="village-library" class="project-entry" aria-labelledby="village-library-title">
+          <p class="eyebrow project-entry-title">12 · <span class="tag-chip">Public &amp; Cultural</span></p>
+          <h2 id="village-library-title" class="heading-md" style="margin-top: 0.5em;">마을 도서관 Village Library</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2026</dd>
+              <dt>유형(Type)</dt><dd>공공 도서관</dd>
+              <dt>프로그램(Program)</dt><dd>공공·문화 시설</dd>
+              <dt>대지위치(Site)</dt><dd>경기도 양평군</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-a" role="img" aria-label="마을 도서관 열람실 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="마을 도서관 중정 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-b" role="img" aria-label="마을 도서관 외관 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="마을 도서관 서가 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article id="riverside-pavilion" class="project-entry" aria-labelledby="riverside-pavilion-title">
+          <p class="eyebrow project-entry-title">13 · <span class="tag-chip">Public &amp; Cultural</span></p>
+          <h2 id="riverside-pavilion-title" class="heading-md" style="margin-top: 0.5em;">강변 파빌리온 Riverside Pavilion</h2>
+          <div class="project-entry-grid" style="margin-top: var(--space-3);">
+            <dl class="project-meta-list">
+              <dt>준공(Year)</dt><dd>2025</dd>
+              <dt>유형(Type)</dt><dd>커뮤니티 파빌리온</dd>
+              <dt>프로그램(Program)</dt><dd>공공·문화 시설</dd>
+              <dt>대지위치(Site)</dt><dd>경상남도 하동군</dd>
+              <dt>설계(Architect)</dt><dd>OOA Architects</dd>
+              <dt>담당(Project Lead)</dt><dd>TBD</dd>
+              <dt>사진(Photographs)</dt><dd>TBD</dd>
+            </dl>
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-b" role="img" aria-label="강변 파빌리온 전경 placeholder 이미지"><span class="tile-index">01</span></div>
+              <div class="gallery-tile tile-d" role="img" aria-label="강변 파빌리온 처마 상세 placeholder 이미지"><span class="tile-index">02</span></div>
+              <div class="gallery-tile tile-a" role="img" aria-label="강변 파빌리온 내부 placeholder 이미지"><span class="tile-index">03</span></div>
+              <div class="gallery-tile tile-c" role="img" aria-label="강변 파빌리온 야경 placeholder 이미지"><span class="tile-index">04</span></div>
+            </div>
+          </div>
+        </article>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 OOA Architects. All rights reserved.</span>
-        <span>Seoul, South Korea</span>
-      </div>
-    </div>
-  </footer>
+    </main>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

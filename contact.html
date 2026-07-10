@@ -8,88 +8,120 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="logo" href="index.html">OOA Architects</a>
-      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="main-nav" id="main-nav" aria-label="주 메뉴">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="project.html">Projects</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html" aria-current="page">Contact</a></li>
-        </ul>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="logo" href="index.html">OOA Architects</a>
+        <button class="sidebar-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <details class="nav-tree" open>
+        <summary>Project</summary>
+
+        <details class="nav-category">
+          <summary>주거 <span class="tag-chip">Residential</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#sisu-house">Sisu House</a></li>
+            <li><a href="project.html#maru-house">마루집 Maru House</a></li>
+            <li><a href="project.html#eunpyeon-house">은편 하우스 Eunpyeon House</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>상업·리테일 <span class="tag-chip">Commercial &amp; Retail</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#sobo-cafe">소보 카페 Sobo Café</a></li>
+            <li><a href="project.html#field-store">필드 스토어 Field Store</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>호스피탈리티 <span class="tag-chip">Hospitality</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#stillbay-hotel">스틸베이 호텔 Stillbay Hotel</a></li>
+            <li><a href="project.html#noseon-guesthouse">노선 게스트하우스 Noseon Guesthouse</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>오피스 <span class="tag-chip">Office</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#grid-office">그리드 오피스 Grid Office</a></li>
+            <li><a href="project.html#lineworks-studio">라인웍스 스튜디오 Lineworks Studio</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>리노베이션 <span class="tag-chip">Renovation</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#wonseodong-renovation">원서동 리노베이션 Wonseo-dong Renovation</a></li>
+            <li><a href="project.html#warehouse-remodel">창고 리모델링 Warehouse Remodel</a></li>
+          </ul>
+        </details>
+
+        <details class="nav-category">
+          <summary>공공·문화 <span class="tag-chip">Public &amp; Cultural</span></summary>
+          <ul class="project-list">
+            <li><a href="project.html#village-library">마을 도서관 Village Library</a></li>
+            <li><a href="project.html#riverside-pavilion">강변 파빌리온 Riverside Pavilion</a></li>
+          </ul>
+        </details>
+      </details>
+
+      <nav class="nav-plain" aria-label="보조 메뉴">
+        <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="section" aria-label="연락처 소개">
-      <div class="container">
-        <p class="eyebrow">Contact</p>
-        <h1 class="heading-lg">프로젝트를<br />함께 시작해보세요</h1>
-        <p class="body-lg" style="margin-top: var(--space-3);">
-          신규 프로젝트 문의는 아래 이메일로 연락해 주세요. 이 페이지의 정보는 실제 연락처가 아닌
-          placeholder이며, 추후 실제 정보로 교체될 예정입니다.
-        </p>
+      <div class="sidebar-contact">
+        <p>02-0000-0000 (placeholder)</p>
+        <p><a href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a></p>
       </div>
-    </section>
+    </aside>
 
-    <hr class="divider" />
+    <main class="page-content">
+      <div class="content-col">
+        <section class="section" aria-label="연락처 소개">
+          <p class="eyebrow">Contact</p>
+          <h1 class="heading-lg" style="margin-top: 0.5em;">프로젝트를 함께 시작해보세요</h1>
+          <p class="body-copy" style="margin-top: var(--space-3);">
+            신규 프로젝트 문의는 아래 이메일로 연락해 주세요. 이 페이지의 정보는 실제 연락처가 아닌
+            placeholder이며, 추후 실제 정보로 교체될 예정입니다.
+          </p>
+        </section>
 
-    <section class="section" aria-label="연락처 정보">
-      <div class="container">
-        <dl class="contact-grid">
-          <div class="contact-block">
-            <dt>Email</dt>
-            <dd><a class="link-arrow" href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a></dd>
+        <hr class="divider" />
+
+        <section class="section" aria-label="연락처 정보">
+          <dl class="contact-grid">
+            <div class="contact-block">
+              <dt>Email</dt>
+              <dd><a class="link-underline" href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a></dd>
+            </div>
+            <div class="contact-block">
+              <dt>Phone</dt>
+              <dd>02-0000-0000 (placeholder)</dd>
+            </div>
+            <div class="contact-block">
+              <dt>Address</dt>
+              <dd>서울특별시 성동구 (상세 주소 placeholder)</dd>
+            </div>
+          </dl>
+
+          <div class="contact-map" role="img" aria-label="스튜디오 위치 placeholder 지도">
+            <span>서울특별시 성동구 (placeholder map)</span>
           </div>
-          <div class="contact-block">
-            <dt>Phone</dt>
-            <dd>02-0000-0000 (placeholder)</dd>
-          </div>
-          <div class="contact-block">
-            <dt>Address</dt>
-            <dd>서울특별시 성동구 (상세 주소 placeholder)</dd>
-          </div>
-        </dl>
-        <p class="contact-note" style="margin-top: var(--space-4);">
-          본 사이트는 정적(static) 페이지로 배포되어 있어 별도의 문의 폼 기능은 제공되지 않습니다.
-          위 이메일 링크를 통해 직접 연락해 주시기 바랍니다.
-        </p>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <p class="logo" style="margin-bottom: var(--space-2);">OOA Architects</p>
-          <p class="contact-note">공간과 재료의 본질을 탐구하는 건축 설계 스튜디오</p>
-        </div>
-        <div class="footer-links">
-          <span class="eyebrow">Menu</span>
-          <a href="index.html">Home</a>
-          <a href="project.html">Projects</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div class="footer-links">
-          <span class="eyebrow">Connect</span>
-          <a href="mailto:studio@ooa-architects.example">studio@ooa-architects.example</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-        </div>
+          <p class="body-copy" style="margin-top: var(--space-3); font-size: 0.85rem; color: var(--c-text-3);">
+            본 사이트는 정적(static) 페이지로 배포되어 있어 별도의 문의 폼 기능은 제공되지 않습니다.
+            위 이메일 링크를 통해 직접 연락해 주시기 바랍니다.
+          </p>
+        </section>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 OOA Architects. All rights reserved.</span>
-        <span>Seoul, South Korea</span>
-      </div>
-    </div>
-  </footer>
+    </main>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

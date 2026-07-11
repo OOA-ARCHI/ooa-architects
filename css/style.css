@@ -507,6 +507,29 @@ dd {
   opacity: 1;
 }
 
+/* Per-project gallery caption — same hover-reveal white text treatment as
+   the cover image, shown above the slide-dots strip regardless of which
+   photo is active. */
+.slideshow .slide-caption {
+  position: absolute;
+  left: var(--space-2);
+  top: var(--space-2);
+  z-index: 3;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.slideshow:hover .slide-caption,
+.slideshow:focus-within .slide-caption {
+  opacity: 1;
+}
+
 /* ---------- Project Gallery Slideshow ----------
    One large image shown at a time with prev/next controls + dots.
    Slides reuse the tile-a..tile-d placeholder gradient variants for

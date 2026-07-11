@@ -495,7 +495,7 @@ dd {
   z-index: 1;
   color: #fff;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   letter-spacing: -0.01em;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
   opacity: 0;
@@ -573,56 +573,27 @@ dd {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.45) 100%);
 }
 
-/* Prev / next controls — restrained dark circles, no accent color. */
-.slide-nav {
+/* Prev / next click zones — invisible left/right halves over the image
+   itself, no arrow glyphs. Dots sit above them (higher z-index) so the
+   dot strip stays independently clickable. */
+.slide-zone {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
+  width: 50%;
   z-index: 2;
-  width: 2.75rem;
-  height: 2.75rem;
-  min-width: 44px;
-  min-height: 44px;
   border: none;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 1.4rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  padding: 0;
 }
 
-.slide-nav:hover,
-.slide-nav:focus-visible {
-  background-color: rgba(0, 0, 0, 0.6);
+.slide-zone-prev {
+  left: 0;
 }
 
-.slide-prev {
-  left: var(--space-1);
-}
-
-.slide-next {
-  right: var(--space-1);
-}
-
-@media (min-width: 768px) {
-  .slide-nav {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .slide-prev {
-    left: var(--space-2);
-  }
-
-  .slide-next {
-    right: var(--space-2);
-  }
+.slide-zone-next {
+  right: 0;
 }
 
 /* Dots — small, but with an enlarged invisible hit area for touch. */
@@ -631,7 +602,7 @@ dd {
   left: 0;
   right: 0;
   bottom: var(--space-1);
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: center;
   gap: 0.6em;

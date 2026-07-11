@@ -93,8 +93,8 @@
       var track = show.querySelector(".slideshow-track");
       var slides = show.querySelectorAll("[data-slide]");
       var dots = show.querySelectorAll(".slide-dot");
-      var prevBtn = show.querySelector(".slide-prev");
-      var nextBtn = show.querySelector(".slide-next");
+      var prevBtn = show.querySelector(".slide-zone-prev");
+      var nextBtn = show.querySelector(".slide-zone-next");
       var count = slides.length;
       var active = 0;
 

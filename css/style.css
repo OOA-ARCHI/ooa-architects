@@ -402,7 +402,7 @@ dd {
 }
 
 .content-col {
-  max-width: 75%;
+  max-width: 88%;
   width: 100%;
 }
 
@@ -469,7 +469,7 @@ dd {
   display: block;
   aspect-ratio: 16 / 9;
   width: 100%;
-  max-width: var(--content-max);
+  max-width: 700px;
   border-radius: 2px;
   background: linear-gradient(
     150deg,
@@ -696,7 +696,7 @@ dd {
 
 @media (min-width: 768px) {
   .project-entry-grid {
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: minmax(180px, 200px) 1fr;
     gap: var(--space-4);
   }
 }

@@ -438,19 +438,18 @@ dd {
 }
 
 /* ---------- Placeholder Surface: shared "atelier placeholder" treatment ----------
-   Every real-image slot (hero, gallery tiles, contact map) is a richer,
-   multi-stop gradient with a faint fine-line architectural overlay — read
-   as an intentional drafting/blueprint motif, not a loading skeleton. */
+   Every real-image slot (hero, gallery tiles) is a richer, multi-stop
+   gradient with a faint fine-line architectural overlay — read as an
+   intentional drafting/blueprint motif, not a loading skeleton.
+   .contact-map is excluded: it now holds a real embedded map. */
 .hero-visual,
-.slide,
-.contact-map {
+.slide {
   position: relative;
   overflow: hidden;
 }
 
 .hero-visual::before,
-.slide::before,
-.contact-map::before {
+.slide::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -742,24 +741,15 @@ dd {
   margin-top: var(--space-4);
   aspect-ratio: 16 / 6;
   border-radius: 2px;
-  background: linear-gradient(150deg, #131110 0%, #322c24 40%, #5c5142 70%, #8f8171 100%);
-  display: flex;
-  align-items: flex-end;
-  padding: var(--space-2);
+  overflow: hidden;
+  border: 1px solid var(--c-line);
 }
 
-.contact-map span {
-  position: relative;
-  z-index: 1;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.75rem;
-}
-
-.contact-map::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ---------- Links / Buttons ---------- */

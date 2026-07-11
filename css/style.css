@@ -461,32 +461,51 @@ dd {
   pointer-events: none;
 }
 
-/* ---------- Home Hero: full-archive slideshow, newest project first ---------- */
-.home-slideshow {
+/* ---------- Home Hero ---------- */
+.hero-tagline {
+  margin-bottom: var(--space-3);
+}
+
+.hero-visual {
+  display: block;
+  aspect-ratio: 16 / 9;
+  width: 100%;
   max-width: var(--content-max);
+  border-radius: 2px;
+  background: linear-gradient(
+    150deg,
+    #0b0b0b 0%,
+    #2a2723 30%,
+    #4c463d 55%,
+    #04a1b2 85%,
+    #0d2f33 100%
+  );
+  transition: transform 0.4s ease;
 }
 
-@media (min-width: 768px) {
-  .home-slideshow {
-    aspect-ratio: 16 / 9;
-  }
+.hero-visual:hover,
+.hero-visual:focus-visible {
+  transform: scale(1.015);
 }
 
-.home-slide-caption {
+.hero-visual .hero-visual-label {
   position: absolute;
   left: var(--space-2);
   bottom: var(--space-2);
-  z-index: 3;
+  z-index: 1;
   color: #fff;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: -0.01em;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 
-.home-slide-caption:hover,
-.home-slide-caption:focus-visible {
-  text-decoration: underline;
+.hero-visual:hover .hero-visual-label,
+.hero-visual:focus-visible .hero-visual-label {
+  opacity: 1;
 }
 
 /* ---------- Project Gallery Slideshow ----------

@@ -1,12 +1,25 @@
 /* ==========================================================================
    OOA Architects — Stylesheet
-   Fixed left sidebar + main content shell. IBM Plex Mono (Google Fonts) is
-   reserved for UI chrome — nav, meta lists, labels, captions, small print.
-   Archivo (Google Fonts) drives display headings and reading body copy.
-   No build tooling — plain CSS.
+   Pretendard (self-hosted, Korean-optimized subset) drives all site
+   typography — headings, body copy, and UI chrome alike.
+   Fixed left sidebar + main content shell. No build tooling — plain CSS.
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@font-face {
+  font-family: "Pretendard";
+  src: url("../fonts/pretendard/Pretendard-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../fonts/pretendard/Pretendard-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- Design Tokens ---------- */
 :root {
@@ -25,8 +38,8 @@
   --c-chip-bg: rgba(0, 0, 0, 0.85);
 
   /* Typography */
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --font-sans: "Archivo", -apple-system, "Helvetica Neue", Arial, "Malgun Gothic",
+  --font-mono: "Pretendard", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: "Pretendard", -apple-system, "Helvetica Neue", Arial, "Malgun Gothic",
     "Apple SD Gothic Neo", sans-serif;
 
   /* Spacing */
@@ -480,6 +493,19 @@ dd {
   left: var(--space-2);
   bottom: var(--space-2);
   z-index: 1;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.hero-visual:hover .hero-visual-label,
+.hero-visual:focus-visible .hero-visual-label {
+  opacity: 1;
 }
 
 /* ---------- Project Gallery Slideshow ----------
@@ -778,8 +804,24 @@ dd {
 
 /* ---------- Mobile Layout ---------- */
 @media (max-width: 767px) {
+  /* Lives outside <aside class="sidebar"> so it stays visible even while
+     the sidebar itself is translated off-screen (closed state). */
   .sidebar-toggle {
     display: inline-flex;
+    position: fixed;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 200;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: 2px;
+  }
+
+  .sidebar-toggle span {
+    width: 60%;
+    margin: 0 auto;
   }
 
   .sidebar {

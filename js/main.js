@@ -149,6 +149,63 @@
         }
       });
 
+      /* ---- Swipe / drag gesture (Pointer Events cover touch + mouse + pen) ----
+         Tapping still falls through to the zone-button click handlers above;
+         this only reacts once movement crosses SWIPE_THRESHOLD, and then
+         suppresses the synthetic click that follows so a swipe ending over
+         a zone button doesn't also fire that button's own goTo(). */
+      var SWIPE_THRESHOLD = 40;
+      var pointerStartX = 0;
+      var pointerStartY = 0;
+      var pointerActive = false;
+      var didSwipe = false;
+
+      show.addEventListener("pointerdown", function (event) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        pointerActive = true;
+        didSwipe = false;
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+      });
+
+      show.addEventListener("pointermove", function (event) {
+        if (!pointerActive) return;
+        var dx = event.clientX - pointerStartX;
+        var dy = event.clientY - pointerStartY;
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+          // Horizontal drag dominant — stop vertical page scroll from fighting the gesture.
+          event.preventDefault();
+        }
+      });
+
+      function endPointer(event) {
+        if (!pointerActive) return;
+        pointerActive = false;
+        var dx = event.clientX - pointerStartX;
+        var dy = event.clientY - pointerStartY;
+        if (Math.abs(dx) >= SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+          didSwipe = true;
+          goTo(active + (dx < 0 ? 1 : -1));
+        }
+      }
+
+      show.addEventListener("pointerup", endPointer);
+      show.addEventListener("pointercancel", function () {
+        pointerActive = false;
+      });
+
+      show.addEventListener(
+        "click",
+        function (event) {
+          if (didSwipe) {
+            event.preventDefault();
+            event.stopPropagation();
+            didSwipe = false;
+          }
+        },
+        true
+      );
+
       render();
     });
   }

@@ -210,10 +210,55 @@
     });
   }
 
+  /* ---------- Intro splash (index.html only) ----------
+     Black "OOA" is visible immediately; 1s later the expansion text
+     ("ptimum" / "pus" / "rchitecture") fades in, then the whole splash
+     fades out to reveal the homepage. Plays once per browser tab session
+     and is skippable by click; respects prefers-reduced-motion. */
+  function initIntroSplash() {
+    var splash = document.getElementById("introSplash");
+    if (!splash) return;
+
+    if (sessionStorage.getItem("ooaIntroPlayed")) {
+      splash.remove();
+      return;
+    }
+    sessionStorage.setItem("ooaIntroPlayed", "1");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      splash.remove();
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    var revealTimer = window.setTimeout(function () {
+      splash.classList.add("is-revealed");
+    }, 1000);
+
+    var hideTimer = window.setTimeout(finish, 2600);
+
+    function finish() {
+      window.clearTimeout(revealTimer);
+      window.clearTimeout(hideTimer);
+      splash.classList.add("is-revealed", "is-hidden");
+      document.body.style.overflow = "";
+
+      splash.addEventListener("transitionend", function handleEnd(event) {
+        if (event.propertyName !== "opacity") return;
+        splash.removeEventListener("transitionend", handleEnd);
+        splash.remove();
+      });
+    }
+
+    splash.addEventListener("click", finish);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSidebarToggle();
     initSmoothScroll();
     scrollToInitialHash();
     initSlideshows();
+    initIntroSplash();
   });
 })();

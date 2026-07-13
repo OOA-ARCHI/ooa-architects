@@ -116,6 +116,73 @@ dd {
   border: 0;
 }
 
+/* ---------- Intro Splash (index.html only) ---------- */
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8c65a;
+  cursor: pointer;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.intro-splash.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-lines {
+  text-align: center;
+}
+
+.intro-line {
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 9vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.intro-strong {
+  font-weight: 700;
+  color: #000;
+}
+
+.intro-light {
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #000;
+  opacity: 0;
+  transform: translateX(-0.3em);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.intro-splash.is-revealed .intro-light {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 640px) {
+  .intro-line {
+    font-size: clamp(1.8rem, 10vw, 3rem);
+  }
+
+  .intro-light {
+    -webkit-text-stroke: 1px #000;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-splash,
+  .intro-light {
+    transition: none !important;
+  }
+}
+
 /* ---------- Typography helpers ---------- */
 .eyebrow {
   font-family: var(--font-mono);

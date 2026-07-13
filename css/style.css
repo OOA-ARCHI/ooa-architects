@@ -308,6 +308,10 @@ dd {
   color: var(--c-text-1);
 }
 
+.logo-strong {
+  font-weight: 700;
+}
+
 .sidebar-toggle {
   display: none;
   width: 2rem;

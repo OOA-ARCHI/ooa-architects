@@ -236,7 +236,7 @@
       splash.classList.add("is-revealed");
     }, 1000);
 
-    var hideTimer = window.setTimeout(finish, 2600);
+    var hideTimer = window.setTimeout(finish, 3600);
 
     function finish() {
       window.clearTimeout(revealTimer);

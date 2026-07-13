@@ -135,6 +135,16 @@ dd {
   pointer-events: none;
 }
 
+.intro-dot {
+  position: absolute;
+  top: clamp(1.25rem, 4vw, 2.5rem);
+  right: clamp(1.25rem, 4vw, 2.5rem);
+  width: clamp(1.25rem, 3vw, 2rem);
+  height: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 50%;
+  background-color: #000;
+}
+
 .intro-lines {
   text-align: center;
 }

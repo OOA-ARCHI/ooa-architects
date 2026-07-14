@@ -302,7 +302,7 @@ dd {
 
 .logo {
   font-family: var(--font-sans);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--c-text-1);
@@ -354,7 +354,7 @@ dd {
 }
 
 .nav-main > a {
-  font-size: 20px;
+  font-size: 23px;
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -380,7 +380,7 @@ dd {
 }
 
 .nav-tree > summary {
-  font-size: 19px;
+  font-size: 22px;
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -395,7 +395,7 @@ dd {
 }
 
 .nav-category > summary {
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: -0.02em;
   line-height: 1.5;
   text-decoration: underline;
@@ -416,7 +416,7 @@ dd {
 
 .project-list li a {
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: -0.02em;
   line-height: 1.5;
   color: inherit;
@@ -442,7 +442,7 @@ dd {
   margin-top: var(--space-3);
   padding-top: var(--space-2);
   border-top: 1px solid var(--c-line);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--c-text-3);
 }

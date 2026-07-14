@@ -529,9 +529,8 @@ dd {
 
 .hero-visual {
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   width: 100%;
-  max-width: 1100px;
   margin-top: var(--space-4);
   border-radius: 2px;
   background: linear-gradient(
@@ -543,6 +542,14 @@ dd {
     #0d2f33 100%
   );
   transition: transform 0.4s ease;
+}
+
+/* Match the aspect ratio used by each project's own gallery (.slideshow)
+   so the home hero reads at the same size as the other Op. main images. */
+@media (min-width: 768px) {
+  .hero-visual {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .hero-visual:hover,

@@ -226,7 +226,7 @@
       images[active].classList.remove("is-active");
       active = (active + 1) % images.length;
       images[active].classList.add("is-active");
-    }, 1000);
+    }, 2500);
   }
 
   /* ---------- Intro splash (index.html only) ----------

@@ -302,7 +302,7 @@ dd {
 
 .logo {
   font-family: var(--font-sans);
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--c-text-1);
@@ -354,7 +354,7 @@ dd {
 }
 
 .nav-main > a {
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -380,7 +380,7 @@ dd {
 }
 
 .nav-tree > summary {
-  font-size: 15px;
+  font-size: 19px;
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -660,9 +660,12 @@ dd {
 }
 
 /* Home hero auto-slideshow — cross-fades between stacked images instead of
-   the prev/next track transform used by the project gallery slideshows. */
+   the prev/next track transform used by the project gallery slideshows.
+   object-fit: contain (rather than cover) keeps the full portrait photo
+   visible with letterboxing on the sides, instead of cropping top/bottom. */
 .hero-visual-img {
   opacity: 0;
+  object-fit: contain;
   transition: opacity 0.8s ease;
 }
 

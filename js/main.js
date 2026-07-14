@@ -210,6 +210,25 @@
     });
   }
 
+  /* ---------- Home hero auto-slideshow (index.html only) ----------
+     Cross-fades through images/main/01.jpg..06.jpg in order, one at a
+     time, looping back to the first after the last. */
+  function initHeroSlideshow() {
+    var hero = document.querySelector("[data-hero-slideshow]");
+    if (!hero) return;
+
+    var images = hero.querySelectorAll(".hero-visual-img");
+    if (images.length < 2) return;
+
+    var active = 0;
+
+    window.setInterval(function () {
+      images[active].classList.remove("is-active");
+      active = (active + 1) % images.length;
+      images[active].classList.add("is-active");
+    }, 1000);
+  }
+
   /* ---------- Intro splash (index.html only) ----------
      Black "OOA" is visible immediately; 1s later the expansion text
      ("ptimum" / "pus" / "rchitecture") fades in, then the whole splash
@@ -259,6 +278,7 @@
     initSmoothScroll();
     scrollToInitialHash();
     initSlideshows();
+    initHeroSlideshow();
     initIntroSplash();
   });
 })();

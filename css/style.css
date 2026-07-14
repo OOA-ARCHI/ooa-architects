@@ -346,8 +346,25 @@ dd {
 }
 
 /* ---------- Sidebar Nav Tree ---------- */
-.nav-tree {
+.nav-main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.nav-main > a {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--c-text-2);
+}
+
+.nav-main > a[aria-current="page"],
+.nav-main > a:hover,
+.nav-main > a:focus-visible {
+  color: var(--c-teal);
 }
 
 .nav-tree > summary,
@@ -431,29 +448,6 @@ dd {
   background-color: rgba(0, 0, 0, 0.05);
   color: var(--c-teal);
   padding-inline-start: 0.6em;
-}
-
-.nav-plain {
-  margin-top: var(--space-3);
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--c-line);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4em;
-}
-
-.nav-plain a {
-  font-size: 13px;
-  letter-spacing: -0.02em;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  color: var(--c-text-2);
-}
-
-.nav-plain a[aria-current="page"],
-.nav-plain a:hover,
-.nav-plain a:focus-visible {
-  color: var(--c-teal);
 }
 
 /* ---------- Sidebar Contact Block (pinned bottom) ---------- */

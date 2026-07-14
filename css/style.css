@@ -533,15 +533,15 @@ dd {
   width: 100%;
   margin-top: var(--space-4);
   border-radius: 2px;
-  background: linear-gradient(
-    150deg,
-    #0b0b0b 0%,
-    #2a2723 30%,
-    #4c463d 55%,
-    #04a1b2 85%,
-    #0d2f33 100%
-  );
+  background: var(--c-bg);
   transition: transform 0.4s ease;
+}
+
+/* object-fit: contain on .hero-visual-img can leave letterbox strips beside
+   portrait photos — keep those strips plain (page background, no texture)
+   instead of the placeholder gradient/line-grid used elsewhere. */
+.hero-visual::before {
+  display: none;
 }
 
 /* Match the aspect ratio used by each project's own gallery (.slideshow)

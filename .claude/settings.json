@@ -314,7 +314,7 @@
     "PATH": "C:\\Users\\archi\\.local\\bin;C:\\Users\\archi\\go\\bin;/usr/local/bin;/usr/local/sbin;/usr/bin;/bin;/usr/sbin;/sbin"
   },
   "permissions": {
-    "defaultMode": "acceptEdits",
+    "defaultMode": "bypassPermissions",
     "allow": [
       "AskUserQuestion",
       "BashOutput",

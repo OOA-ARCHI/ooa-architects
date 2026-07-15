@@ -61,7 +61,7 @@
       if (!isSamePage || hash.length < 2) return;
 
       link.addEventListener("click", function (event) {
-        var target = document.querySelector(hash);
+        var target = document.getElementById(hash.slice(1));
         if (!target) return;
 
         event.preventDefault();
@@ -71,10 +71,14 @@
     });
   }
 
-  /* ---------- Scroll to hash target on initial load ---------- */
+  /* ---------- Scroll to hash target on initial load ----------
+     Uses getElementById rather than querySelector(hash) because project
+     slugs start with a digit (e.g. "07-byeolbit-..."), which is an invalid
+     CSS ID selector and throws — silently skipping every init call queued
+     after this one, including initSlideshows(). */
   function scrollToInitialHash() {
     if (!window.location.hash) return;
-    var target = document.querySelector(window.location.hash);
+    var target = document.getElementById(window.location.hash.slice(1));
     if (!target) return;
 
     window.requestAnimationFrame(function () {

@@ -193,6 +193,37 @@ dd {
   }
 }
 
+.award-line {
+  display: flex;
+  gap: var(--space-2);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.award-line.small-print {
+  max-width: none;
+}
+
+.award-line span {
+  flex-shrink: 0;
+}
+
+.award-date {
+  flex: 0 0 3rem;
+  color: var(--c-text-4);
+}
+
+.team-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.team-row > div {
+  flex: 1 1 240px;
+  min-width: 200px;
+}
+
 .team-avatar {
   width: 96px;
   height: 96px;

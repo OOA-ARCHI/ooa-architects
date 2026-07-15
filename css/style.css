@@ -193,6 +193,14 @@ dd {
   }
 }
 
+.team-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--space-2);
+}
+
 /* ---------- Typography helpers ---------- */
 .eyebrow {
   font-family: var(--font-mono);

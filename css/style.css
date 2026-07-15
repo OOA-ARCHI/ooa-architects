@@ -229,7 +229,7 @@ dd {
   height: 96px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: var(--space-2);
+  margin-bottom: 0.67rem;
 }
 
 /* ---------- Typography helpers ---------- */

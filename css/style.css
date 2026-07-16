@@ -124,7 +124,7 @@ dd {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e8c65a;
+  background-color: #1e3a5f;
   cursor: pointer;
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
@@ -142,7 +142,7 @@ dd {
   width: clamp(1.25rem, 3vw, 2rem);
   height: clamp(1.25rem, 3vw, 2rem);
   border-radius: 50%;
-  background-color: #000;
+  background-color: #fff;
 }
 
 .intro-lines {
@@ -159,13 +159,13 @@ dd {
 
 .intro-strong {
   font-weight: 700;
-  color: #000;
+  color: #fff;
 }
 
 .intro-light {
   font-weight: 400;
   color: transparent;
-  -webkit-text-stroke: 1.5px #000;
+  -webkit-text-stroke: 1.5px #fff;
   opacity: 0;
   transform: translateX(-0.3em);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -182,7 +182,7 @@ dd {
   }
 
   .intro-light {
-    -webkit-text-stroke: 1px #000;
+    -webkit-text-stroke: 1px #fff;
   }
 }
 

@@ -236,11 +236,13 @@
   /* ---------- Intro splash (index.html only) ----------
      Black "OOA" is visible immediately; 1s later the expansion text
      ("ptimum" / "pus" / "rchitecture") fades in as outline letters.
-     Shortly after, random outline letters keep toggling between outline
-     and solid black fill at staggered moments — a monochrome take on the
-     shifting-segments rhythm of the Sasaki logo. The dot appears last, as
-     a closing punctuation mark, before the whole splash fades out to
-     reveal the homepage. Plays once per browser tab session and is skippable by
+     Like the sasaki.com landing screen, each outline letter starts as a
+     hairline stroke and grows to full stroke weight at staggered moments
+     (verified frame-by-frame from a screen recording of sasaki.com).
+     While the splash stays up, random letters keep thinning back to a
+     hairline and regrowing, so the type feels alive. The dot appears
+     last, as a closing punctuation mark, before the whole splash fades
+     out to reveal the homepage. Plays once per browser tab session and is skippable by
      click; respects prefers-reduced-motion. */
   function initIntroSplash() {
     var splash = document.getElementById("introSplash");
@@ -259,40 +261,94 @@
 
     document.body.style.overflow = "hidden";
 
-    /* 아웃라인 텍스트를 글자 단위 span으로 분리 (글자별로 채움 상태를 바꾸기 위함) */
+    /* 아웃라인 텍스트를 글자 단위 span으로 분리 (글자별 획 굵기 애니메이션용).
+       완성 획 굵기는 CSS(-webkit-text-stroke, 데스크톱 1.5px/모바일 1px)에서 읽는다 */
     var letters = [];
     var lights = splash.querySelectorAll(".intro-light");
     for (var i = 0; i < lights.length; i++) {
+      var baseStroke =
+        parseFloat(getComputedStyle(lights[i]).webkitTextStrokeWidth) || 1.5;
       var text = lights[i].textContent;
       lights[i].textContent = "";
       for (var j = 0; j < text.length; j++) {
         var ch = document.createElement("span");
         ch.className = "intro-ch";
         ch.textContent = text.charAt(j);
-        /* 글자마다 다른 지연 시간 → 색이 모자이크처럼 시차를 두고 변한다 */
-        ch.style.transitionDelay = (Math.random() * 0.35).toFixed(2) + "s";
+        ch.dataset.base = baseStroke;
+        /* 시작 상태: 거의 보이지 않는 헤어라인 획 */
+        ch.style.webkitTextStrokeWidth = "0.05px";
         lights[i].appendChild(ch);
         letters.push(ch);
       }
+      /* 글자가 전부 헤어라인 상태가 된 뒤에만 노출 (완성 굵기 플래시 방지) */
+      lights[i].style.opacity = "1";
     }
 
-    var colorTicker = null;
+    /* -webkit-text-stroke-width는 CSS transition이 안 되는(discrete) 속성이라
+       requestAnimationFrame으로 직접 보간한다. sasaki.com 첫 화면과 동일하게
+       가는 선 -> 완성 굵기로 "자라나는" 움직임 */
+    var tweens = [];
+    var rafId = null;
+
+    function tickTweens(now) {
+      for (var t = tweens.length - 1; t >= 0; t--) {
+        var tw = tweens[t];
+        var p = (now - tw.start) / tw.dur;
+        if (p < 0) continue;
+        if (p > 1) p = 1;
+        var eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+        tw.el.style.webkitTextStrokeWidth =
+          (tw.from + (tw.to - tw.from) * eased).toFixed(2) + "px";
+        if (p === 1) {
+          tweens.splice(t, 1);
+          if (tw.done) tw.done();
+        }
+      }
+      rafId = window.requestAnimationFrame(tickTweens);
+    }
+
+    function tween(el, from, to, dur, delay, done) {
+      tweens.push({
+        el: el,
+        from: from,
+        to: to,
+        dur: dur,
+        start: performance.now() + (delay || 0),
+        done: done
+      });
+    }
+
+    var waveTicker = null;
 
     var revealTimer = window.setTimeout(function () {
       splash.classList.add("is-revealed");
+      rafId = window.requestAnimationFrame(tickTweens);
+      /* 등장: 글자마다 시차를 두고 헤어라인 -> 완성 굵기로 성장 */
+      for (var k = 0; k < letters.length; k++) {
+        tween(letters[k], 0.05, parseFloat(letters[k].dataset.base), 700, Math.random() * 600);
+      }
     }, 1000);
 
-    /* 텍스트가 자리잡은 뒤: Sasaki 로고 조각이 변하는 리듬처럼, 일부 글자가
-       아웃라인 <-> 검정 솔리드 채움 사이를 시차를 두고 계속 오간다 (모노크롬 유지) */
-    var colorTimer = window.setTimeout(function () {
-      colorTicker = window.setInterval(function () {
+    /* 등장 완료 후: 무작위 글자가 가늘어졌다가 다시 굵어지기를 반복 */
+    function pulse(el) {
+      el.dataset.busy = "1";
+      var base = parseFloat(el.dataset.base);
+      tween(el, base, 0.1, 350, 0, function () {
+        tween(el, 0.1, base, 450, 80, function () {
+          delete el.dataset.busy;
+        });
+      });
+    }
+
+    var waveTimer = window.setTimeout(function () {
+      waveTicker = window.setInterval(function () {
         for (var k = 0; k < letters.length; k++) {
-          if (Math.random() < 0.3) {
-            letters[k].style.color = letters[k].style.color ? "" : "#000";
+          if (!letters[k].dataset.busy && Math.random() < 0.15) {
+            pulse(letters[k]);
           }
         }
-      }, 650);
-    }, 1600);
+      }, 500);
+    }, 2500);
 
     var dotTimer = window.setTimeout(function () {
       splash.classList.add("is-dot-revealed");
@@ -302,10 +358,12 @@
 
     function finish() {
       window.clearTimeout(revealTimer);
-      window.clearTimeout(colorTimer);
+      window.clearTimeout(waveTimer);
       window.clearTimeout(dotTimer);
       window.clearTimeout(hideTimer);
-      window.clearInterval(colorTicker);
+      window.clearInterval(waveTicker);
+      if (rafId) window.cancelAnimationFrame(rafId);
+      tweens.length = 0;
       splash.classList.add("is-revealed", "is-dot-revealed", "is-hidden");
       document.body.style.overflow = "";
 

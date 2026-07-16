@@ -184,8 +184,9 @@ dd {
   transform: translateX(0);
 }
 
-/* Sasaki 로고처럼 글자 조각마다 색이 채워지고 계속 바뀌는 효과.
-   글자별 span은 JS(initIntroSplash)에서 생성하고, 색상도 JS가 지정한다.
+/* Sasaki 로고 조각이 변하는 리듬을 모노크롬으로 옮긴 효과.
+   글자별 span은 JS(initIntroSplash)에서 생성하고, 일부 글자가
+   아웃라인 <-> 검정 솔리드 채움 사이를 오간다 (색상 팔레트 없음).
    transition-delay는 글자마다 랜덤으로 부여되어 모자이크처럼 시차를 두고 변한다. */
 .intro-light .intro-ch {
   color: transparent;

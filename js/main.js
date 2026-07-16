@@ -236,11 +236,11 @@
   /* ---------- Intro splash (index.html only) ----------
      Black "OOA" is visible immediately; 1s later the expansion text
      ("ptimum" / "pus" / "rchitecture") fades in as outline letters.
-     Shortly after, each outline letter fills with a color from a
-     Sasaki-logo-inspired palette and keeps shifting to new colors at
-     staggered moments (mosaic feel). The dot appears last, as a closing
-     punctuation mark, before the whole splash fades out to reveal the
-     homepage. Plays once per browser tab session and is skippable by
+     Shortly after, random outline letters keep toggling between outline
+     and solid black fill at staggered moments — a monochrome take on the
+     shifting-segments rhythm of the Sasaki logo. The dot appears last, as
+     a closing punctuation mark, before the whole splash fades out to
+     reveal the homepage. Plays once per browser tab session and is skippable by
      click; respects prefers-reduced-motion. */
   function initIntroSplash() {
     var splash = document.getElementById("introSplash");
@@ -259,23 +259,7 @@
 
     document.body.style.overflow = "hidden";
 
-    /* 노란 배경(#e8c65a) 위에서 잘 보이도록 고른 Sasaki풍 팔레트 */
-    var INTRO_PALETTE = [
-      "#d7263d", /* crimson */
-      "#1f6f43", /* forest green */
-      "#7b3f8c", /* plum */
-      "#2f4b9e", /* cobalt */
-      "#e2711d", /* burnt orange */
-      "#c98a8f", /* dusty rose */
-      "#7f95c9", /* periwinkle */
-      "#74a12e", /* moss lime */
-      "#3e8f7c", /* teal */
-      "#8e2f3c", /* maroon */
-      "#8a5a2b", /* umber */
-      "#9a7fc2"  /* lavender */
-    ];
-
-    /* 아웃라인 텍스트를 글자 단위 span으로 분리 (색을 글자별로 바꾸기 위함) */
+    /* 아웃라인 텍스트를 글자 단위 span으로 분리 (글자별로 채움 상태를 바꾸기 위함) */
     var letters = [];
     var lights = splash.querySelectorAll(".intro-light");
     for (var i = 0; i < lights.length; i++) {
@@ -292,31 +276,19 @@
       }
     }
 
-    function pickColor(current) {
-      var next = current;
-      while (next === current) {
-        next = INTRO_PALETTE[Math.floor(Math.random() * INTRO_PALETTE.length)];
-      }
-      return next;
-    }
-
     var colorTicker = null;
 
     var revealTimer = window.setTimeout(function () {
       splash.classList.add("is-revealed");
     }, 1000);
 
-    /* 텍스트가 자리잡은 뒤: 전 글자에 첫 색을 입히고, 이후 일부 글자씩 계속 전환 */
+    /* 텍스트가 자리잡은 뒤: Sasaki 로고 조각이 변하는 리듬처럼, 일부 글자가
+       아웃라인 <-> 검정 솔리드 채움 사이를 시차를 두고 계속 오간다 (모노크롬 유지) */
     var colorTimer = window.setTimeout(function () {
-      for (var k = 0; k < letters.length; k++) {
-        letters[k].dataset.introColor = pickColor("");
-        letters[k].style.color = letters[k].dataset.introColor;
-      }
       colorTicker = window.setInterval(function () {
         for (var k = 0; k < letters.length; k++) {
-          if (Math.random() < 0.35) {
-            letters[k].dataset.introColor = pickColor(letters[k].dataset.introColor);
-            letters[k].style.color = letters[k].dataset.introColor;
+          if (Math.random() < 0.3) {
+            letters[k].style.color = letters[k].style.color ? "" : "#000";
           }
         }
       }, 650);

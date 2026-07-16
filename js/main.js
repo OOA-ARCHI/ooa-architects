@@ -235,10 +235,13 @@
 
   /* ---------- Intro splash (index.html only) ----------
      Black "OOA" is visible immediately; 1s later the expansion text
-     ("ptimum" / "pus" / "rchitecture") fades in; the dot appears last,
-     as a closing punctuation mark, before the whole splash fades out to
-     reveal the homepage. Plays once per browser tab session and is
-     skippable by click; respects prefers-reduced-motion. */
+     ("ptimum" / "pus" / "rchitecture") fades in as outline letters.
+     Shortly after, each outline letter fills with a color from a
+     Sasaki-logo-inspired palette and keeps shifting to new colors at
+     staggered moments (mosaic feel). The dot appears last, as a closing
+     punctuation mark, before the whole splash fades out to reveal the
+     homepage. Plays once per browser tab session and is skippable by
+     click; respects prefers-reduced-motion. */
   function initIntroSplash() {
     var splash = document.getElementById("introSplash");
     if (!splash) return;
@@ -256,20 +259,81 @@
 
     document.body.style.overflow = "hidden";
 
+    /* 노란 배경(#e8c65a) 위에서 잘 보이도록 고른 Sasaki풍 팔레트 */
+    var INTRO_PALETTE = [
+      "#d7263d", /* crimson */
+      "#1f6f43", /* forest green */
+      "#7b3f8c", /* plum */
+      "#2f4b9e", /* cobalt */
+      "#e2711d", /* burnt orange */
+      "#c98a8f", /* dusty rose */
+      "#7f95c9", /* periwinkle */
+      "#74a12e", /* moss lime */
+      "#3e8f7c", /* teal */
+      "#8e2f3c", /* maroon */
+      "#8a5a2b", /* umber */
+      "#9a7fc2"  /* lavender */
+    ];
+
+    /* 아웃라인 텍스트를 글자 단위 span으로 분리 (색을 글자별로 바꾸기 위함) */
+    var letters = [];
+    var lights = splash.querySelectorAll(".intro-light");
+    for (var i = 0; i < lights.length; i++) {
+      var text = lights[i].textContent;
+      lights[i].textContent = "";
+      for (var j = 0; j < text.length; j++) {
+        var ch = document.createElement("span");
+        ch.className = "intro-ch";
+        ch.textContent = text.charAt(j);
+        /* 글자마다 다른 지연 시간 → 색이 모자이크처럼 시차를 두고 변한다 */
+        ch.style.transitionDelay = (Math.random() * 0.35).toFixed(2) + "s";
+        lights[i].appendChild(ch);
+        letters.push(ch);
+      }
+    }
+
+    function pickColor(current) {
+      var next = current;
+      while (next === current) {
+        next = INTRO_PALETTE[Math.floor(Math.random() * INTRO_PALETTE.length)];
+      }
+      return next;
+    }
+
+    var colorTicker = null;
+
     var revealTimer = window.setTimeout(function () {
       splash.classList.add("is-revealed");
     }, 1000);
 
+    /* 텍스트가 자리잡은 뒤: 전 글자에 첫 색을 입히고, 이후 일부 글자씩 계속 전환 */
+    var colorTimer = window.setTimeout(function () {
+      for (var k = 0; k < letters.length; k++) {
+        letters[k].dataset.introColor = pickColor("");
+        letters[k].style.color = letters[k].dataset.introColor;
+      }
+      colorTicker = window.setInterval(function () {
+        for (var k = 0; k < letters.length; k++) {
+          if (Math.random() < 0.35) {
+            letters[k].dataset.introColor = pickColor(letters[k].dataset.introColor);
+            letters[k].style.color = letters[k].dataset.introColor;
+          }
+        }
+      }, 650);
+    }, 1600);
+
     var dotTimer = window.setTimeout(function () {
       splash.classList.add("is-dot-revealed");
-    }, 2400);
+    }, 3000);
 
-    var hideTimer = window.setTimeout(finish, 3400);
+    var hideTimer = window.setTimeout(finish, 4200);
 
     function finish() {
       window.clearTimeout(revealTimer);
+      window.clearTimeout(colorTimer);
       window.clearTimeout(dotTimer);
       window.clearTimeout(hideTimer);
+      window.clearInterval(colorTicker);
       splash.classList.add("is-revealed", "is-dot-revealed", "is-hidden");
       document.body.style.overflow = "";
 

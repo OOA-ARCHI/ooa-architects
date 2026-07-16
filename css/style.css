@@ -184,6 +184,14 @@ dd {
   transform: translateX(0);
 }
 
+/* Sasaki 로고처럼 글자 조각마다 색이 채워지고 계속 바뀌는 효과.
+   글자별 span은 JS(initIntroSplash)에서 생성하고, 색상도 JS가 지정한다.
+   transition-delay는 글자마다 랜덤으로 부여되어 모자이크처럼 시차를 두고 변한다. */
+.intro-light .intro-ch {
+  color: transparent;
+  transition: color 0.6s ease;
+}
+
 @media (max-width: 640px) {
   .intro-line {
     font-size: clamp(2.5rem, 16.7vw, 7rem);

@@ -143,6 +143,14 @@ dd {
   height: clamp(1.25rem, 3vw, 2rem);
   border-radius: 50%;
   background-color: #000;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.intro-splash.is-dot-revealed .intro-dot {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .intro-lines {

@@ -235,9 +235,10 @@
 
   /* ---------- Intro splash (index.html only) ----------
      Black "OOA" is visible immediately; 1s later the expansion text
-     ("ptimum" / "pus" / "rchitecture") fades in, then the whole splash
-     fades out to reveal the homepage. Plays once per browser tab session
-     and is skippable by click; respects prefers-reduced-motion. */
+     ("ptimum" / "pus" / "rchitecture") fades in; the dot appears last,
+     as a closing punctuation mark, before the whole splash fades out to
+     reveal the homepage. Plays once per browser tab session and is
+     skippable by click; respects prefers-reduced-motion. */
   function initIntroSplash() {
     var splash = document.getElementById("introSplash");
     if (!splash) return;
@@ -259,12 +260,17 @@
       splash.classList.add("is-revealed");
     }, 1000);
 
-    var hideTimer = window.setTimeout(finish, 3600);
+    var dotTimer = window.setTimeout(function () {
+      splash.classList.add("is-dot-revealed");
+    }, 2400);
+
+    var hideTimer = window.setTimeout(finish, 3400);
 
     function finish() {
       window.clearTimeout(revealTimer);
+      window.clearTimeout(dotTimer);
       window.clearTimeout(hideTimer);
-      splash.classList.add("is-revealed", "is-hidden");
+      splash.classList.add("is-revealed", "is-dot-revealed", "is-hidden");
       document.body.style.overflow = "";
 
       splash.addEventListener("transitionend", function handleEnd(event) {

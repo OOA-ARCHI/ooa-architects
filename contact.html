@@ -159,12 +159,19 @@
 
           <div class="contact-map">
             <iframe
-              src="https://maps.google.com/maps?q=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EB%8C%80%EC%B2%AD%EB%A1%9C98&amp;output=embed"
+              src="https://maps.google.com/maps?q=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EB%8C%80%EC%B2%AD%EB%A1%9C98&amp;z=17&amp;output=embed"
               title="사무소 위치 지도 — 부산광역시 중구 대청로98"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen
             ></iframe>
+            <!-- 흑백 지도 위에 컬러로 유지되는 사무소 위치 핀 (iframe 밖 오버레이라 grayscale 필터의 영향을 받지 않음) -->
+            <span class="contact-map-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 22 12 22s12-13 12-22C24 5.4 18.6 0 12 0z" fill="#d7263d"/>
+                <circle cx="12" cy="12" r="4.5" fill="#fff"/>
+              </svg>
+            </span>
           </div>
           <p class="small-print" style="margin-top: var(--space-1);">
             <a class="link-underline" href="https://www.google.com/maps/search/?api=1&amp;query=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EB%8C%80%EC%B2%AD%EB%A1%9C98" target="_blank" rel="noopener">Google 지도에서 크게 보기 ↗</a>

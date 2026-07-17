@@ -199,6 +199,12 @@ dd {
   }
 }
 
+/* 수상 등급(우수상(3등) 등)만 살짝 진하게 — 목록 훑을 때 성과가 먼저 보이도록 */
+.award-line .award-grade {
+  font-weight: 600;
+  color: var(--c-text-1);
+}
+
 .award-line {
   display: flex;
   gap: var(--space-2);
@@ -982,11 +988,31 @@ dd {
 }
 
 .contact-map {
+  position: relative; /* 컬러 핀/블럭 오버레이의 기준 */
   margin-top: var(--space-4);
   aspect-ratio: 16 / 6;
   border-radius: 2px;
   overflow: hidden;
   border: 1px solid var(--c-line);
+}
+
+/* 흑백 지도 위 컬러 유지 핀 — 임베드 지도는 조회 주소를 정중앙에 두므로
+   컨테이너 중앙에 핀 끝이 오도록 배치. 지도 조작을 막지 않게 클릭 통과 */
+.contact-map-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 42px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+}
+
+.contact-map-pin svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .contact-map iframe {

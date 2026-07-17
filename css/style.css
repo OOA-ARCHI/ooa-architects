@@ -993,6 +993,7 @@ dd {
   display: block;
   width: 100%;
   height: 100%;
+  filter: grayscale(1); /* 지도를 흑백으로 — 사이트의 모노크롬 톤 유지 */
   border: 0;
 }
 

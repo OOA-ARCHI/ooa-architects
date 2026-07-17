@@ -199,10 +199,9 @@ dd {
   }
 }
 
-/* 수상 등급(우수상(3등) 등)만 살짝 진하게 — 목록 훑을 때 성과가 먼저 보이도록 */
+/* 수상 등급(우수상(3등) 등)만 한 단계(Medium)만 진하게 — 자연스러운 강조 */
 .award-line .award-grade {
-  font-weight: 600;
-  color: var(--c-text-1);
+  font-weight: 500;
 }
 
 .award-line {

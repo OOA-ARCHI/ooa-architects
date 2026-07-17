@@ -608,7 +608,7 @@ dd {
   grid-column: 2 / -1;
   justify-self: end;
   display: block;
-  width: min(100%, 34rem);
+  width: min(100%, 22rem);
   margin-top: var(--space-3);
 }
 

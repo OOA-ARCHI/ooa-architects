@@ -425,12 +425,12 @@ dd {
 }
 
 .nav-tree > summary {
-  font-size: 22px;
+  font-size: 23px;
   letter-spacing: -0.02em;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 2px;
   color: var(--c-text-1);
-  padding: 0.4em 0;
+  padding: 0;
 }
 
 .category-list {

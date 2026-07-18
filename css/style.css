@@ -995,6 +995,23 @@ dd {
   border: 1px solid var(--c-line);
 }
 
+/* 핀 위 사무소명 라벨 — 핀(높이 42px) 바로 위에 검정 칩으로 표기 */
+.contact-map-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-100% - 48px));
+  padding: 0.3em 0.7em;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: #fff;
+  background-color: var(--c-chip-bg);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
 /* 흑백 지도 위 컬러 유지 핀 — 임베드 지도는 조회 주소를 정중앙에 두므로
    컨테이너 중앙에 핀 끝이 오도록 배치. 지도 조작을 막지 않게 클릭 통과 */
 .contact-map-pin {

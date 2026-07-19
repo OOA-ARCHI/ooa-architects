@@ -10,7 +10,7 @@ from ezdxf import units
 from ezdxf.math import Vec2
 import math
 
-doc = ezdxf.new("R2004", setup=True)
+doc = ezdxf.new("R2010", setup=True)
 doc.units = units.MM
 doc.header["$INSUNITS"] = 4
 

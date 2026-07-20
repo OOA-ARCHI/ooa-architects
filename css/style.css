@@ -170,15 +170,18 @@ dd {
   color: #000;
 }
 
-/* sasaki.com 첫 화면과 같은 방식: 아웃라인 글자가 헤어라인 획에서 시작해
-   완성 굵기(데스크톱 1.5px/모바일 1px)로 자라나며 나타난다.
-   획 굵기는 CSS transition이 불가능한 속성이라 JS(initIntroSplash)가
-   requestAnimationFrame으로 글자별(span.intro-ch) 보간을 수행한다. */
 .intro-light {
   font-weight: 400;
   color: transparent;
   -webkit-text-stroke: 1.5px #000;
-  opacity: 0; /* JS가 글자를 헤어라인 상태로 준비한 직후 inline으로 1 처리 */
+  opacity: 0;
+  transform: translateX(-0.3em);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.intro-splash.is-revealed .intro-light {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 @media (max-width: 640px) {

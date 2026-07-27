@@ -80,6 +80,16 @@ class F:
         if s.rot in (0,180): ell(l,s.p(*c),rx,ry)
         else: ell(l,s.p(*c),ry,rx)
     def txt(s,t,pos,h,color=None): txt(t,s.p(*pos),h,color)
+    def label(s,name,area,u,v,h=225,ha=185):
+        """실명/면적 라벨 — 회전유닛에서도 글자가 u축을 따라 흐르고 이름이 항상 면적 위."""
+        x,y=s.p(u,v)
+        if s.rot in (0,180): r,dn,da = 0,(0,195),(0,-195)
+        else:                r,dn,da = 90,(-195,0),(195,0)
+        for s_,hh,cc,d in ((name,h,None,dn),(area,ha,9,da)):
+            at={"layer":"0TEXT","style":"KOR","height":hh,"rotation":r}
+            if cc is not None: at["color"]=cc
+            t=msp.add_text(s_,dxfattribs=at)
+            t.set_placement(W_(x+d[0],y+d[1]),align=TA.MIDDLE_CENTER)
     def win(s,u1,u2,v1,v2):
         a,b=s.p(u1,v1),s.p(u2,v2)
         x1,x2=min(a[0],b[0]),max(a[0],b[0]); y1,y2=min(a[1],b[1]),max(a[1],b[1])
@@ -172,7 +182,7 @@ def u_deluxe(Fr, name, area, loft=False):
     shower(Fr,Wd-1100,1200,Wd-120,2280)
     Fr.txt("욕실",(2300,1750),195)
     # 라벨 밴드 (v2500~3300 무가구)
-    Fr.txt(name,(Wd/2,3250),225); Fr.txt(area,(Wd/2,2870),185,color=9)
+    Fr.label(name,area,Wd/2,3060)
     if loft:
         ladder(Fr,120,3700,720,4900)
         Fr.otb(900,3500,Wd-120,D-120)
@@ -206,7 +216,7 @@ def u_family(Fr, name, area, duplex=False):
     Fr.txt("미니주방",(3650,1060),170,color=9)
     wardrobe(Fr,Wd-820,1200,Wd-120,2600)
     # 라벨 밴드 (v2700~3300)
-    Fr.txt(name,(Wd/2+300,3080),225); Fr.txt(area,(Wd/2+300,2720),185,color=9)
+    Fr.label(name,area,Wd/2+300,2900)
     bed(Fr,120,3400,2120,5000,head="W")               # 더블
     nstand(Fr,120,5150,620,5650)
     if duplex:
@@ -240,7 +250,7 @@ def u_family_wide(Fr, name, area):
     kitchen(Fr,7000,120,Wd-120,820)
     Fr.txt("미니주방",(7750,1080),170,color=9)
     # 라벨 밴드
-    Fr.txt(name,(1450,3550),235); Fr.txt(area,(1450,3180),190,color=9)
+    Fr.label(name,area,1450,3365,235,190)
     # 더블베드 (욕실 안쪽 정적존)
     bed(Fr,2900,2800,4500,4800,head="S")
     nstand(Fr,4600,2800,5100,3300)
@@ -375,14 +385,15 @@ def floor_34F(is4F):
     wall(37320-100,200,37320,COR_S)
 
 # ---------------- 생성 ----------------
-SHEETS=[("2F",0,floor_2F,"단층형 · 6실 (패밀리 4 / 디럭스 2)"),
-        ("3F",-26000,lambda:floor_34F(False),"단층형 · 7실 (패밀리 4 / 디럭스 3)"),
-        ("4F",-52000,lambda:floor_34F(True),"복층 + 로프트형 · 7실 (패밀리 복층 4 / 디럭스 로프트 3)")]
+SHEETS=[("2F",0,floor_2F,("단층형","6실 (패밀리 4 / 디럭스 2)")),
+        ("3F",-26000,lambda:floor_34F(False),("단층형","7실 (패밀리 4 / 디럭스 3)")),
+        ("4F",-52000,lambda:floor_34F(True),("복층 + 로프트형","7실 (패밀리 복층 4 / 디럭스 로프트 3)"))]
 for nm,yo,fn,sub in SHEETS:
     OFF[0],OFF[1]=0.0,float(yo); fn()
     txt(nm,(-4600,BAR_N-2600),2600)
     txt("466 m²",(-4600,BAR_N-4600),700,color=9)
-    txt(sub,(-9500,BAR_N-6300),520,color=8,align=TA.RIGHT)
+    for i,ln in enumerate(sub):
+        txt(ln,(-1500,BAR_N-6400-i*1000),520,color=8,align=TA.RIGHT)
 
 OFF[0],OFF[1]=0.0,0.0
 txt("호텔 가은 — 기준층 평면도 (객실 유닛 반영)",(21000,21800),1600)
@@ -406,8 +417,18 @@ import matplotlib.pyplot as plt
 from ezdxf.addons.drawing import RenderContext, Frontend
 from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
 from ezdxf.addons.drawing.config import Configuration, BackgroundPolicy
-fig=plt.figure(figsize=(26,40),dpi=110); ax=fig.add_axes([0,0,1,1]); ax.set_axis_off()
-Frontend(RenderContext(doc),MatplotlibBackend(ax),
-         config=Configuration(background_policy=BackgroundPolicy.WHITE)).draw_layout(msp,finalize=True)
-ax.set_aspect('equal')
-png=out.replace(".dxf",".png"); fig.savefig(png,dpi=110,facecolor="white"); print("saved:",png)
+def render(png, x1, y1, x2, y2, Wi=26):
+    """finalize=False + 명시적 extent — finalize=True는 figsize를 덮어써서 사용하지 않음."""
+    fig=plt.figure(dpi=110); ax=fig.add_axes([0,0,1,1]); ax.set_axis_off()
+    Frontend(RenderContext(doc),MatplotlibBackend(ax),
+             config=Configuration(background_policy=BackgroundPolicy.WHITE)).draw_layout(msp,finalize=False)
+    fig.set_size_inches(Wi, Wi*(y2-y1)/(x2-x1))
+    ax.set_position([0,0,1,1]); ax.set_axis_off()
+    ax.set_aspect('equal'); ax.set_adjustable('box')
+    ax.set_xlim(x1,x2); ax.set_ylim(y1,y2)
+    fig.savefig(png,dpi=110,facecolor="white"); plt.close(fig); print("saved:",png)
+
+D=os.path.dirname(os.path.abspath(__file__))
+render(out.replace(".dxf",".png"), -21000, -66000, 48500, 23000, Wi=26)
+for nm,yo,_,_ in SHEETS:
+    render(os.path.join(D,f"floor-{nm}.png"), -21000, yo-1600, 48500, yo+BAR_N+1600, Wi=24)

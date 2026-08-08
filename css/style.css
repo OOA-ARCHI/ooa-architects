@@ -531,6 +531,13 @@ dd {
   margin-bottom: var(--space-6);
 }
 
+/* ---------- Site Footer ---------- */
+.site-footer {
+  margin-top: var(--space-5);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--c-line);
+}
+
 /* Home page: sparse-by-design layout (H1 + one hero visual). Center the
    block vertically on larger screens so the space reads as intentional
    minimalism rather than an unfinished page. */

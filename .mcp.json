@@ -16,6 +16,11 @@
       "command": "moai",
       "args": ["mcp", "lsp"],
       "timeout": 30
+    },
+    "kordoc": {
+      "$comment": "HWP/HWPX/PDF/XLSX/DOCX <-> Markdown (parse/generate/fill/patch/diff) via kordoc (npm, chrisryugj/kordoc). 'kordoc generate' output confirmed opening cleanly in real Hancom Office (user-verified 2026-08-12 in OOA-ARCHI/Change-of-Building-Use) — safe to use as the primary tool for hwpx authoring/patching/form-filling. Verify output with the kordoc MCP's own `render_document` tool, not LibreOffice (its H2Orestart plugin fails to open kordoc's HWPX in sandboxed environments even though real Hancom Office opens it fine).",
+      "command": "/bin/bash",
+      "args": ["-l", "-c", "exec npx -y kordoc mcp"]
     }
   },
   "staggeredStartup": {

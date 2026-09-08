@@ -284,7 +284,7 @@ def extract_document(
     pages: str | None = None,
     vision: bool = False,
     out_path: str | None = None,
-    reasoning_effort: str = "medium",
+    reasoning_effort: str = "low",
     model: str = DEFAULT_MODEL,
     max_chars: int = DEFAULT_MAX_CHARS,
 ) -> str:
@@ -302,7 +302,7 @@ def extract_document(
         pages: 페이지 범위 (예: "1-40").
         vision: True면 각 페이지를 이미지로도 첨부한다(도면·표·다이어그램 판독용, 느리고 비쌈).
         out_path: 결과 저장 경로. 결과가 길면 반드시 지정할 것.
-        reasoning_effort: "none" | "low" | "medium" | "high" | "max".
+        reasoning_effort: "none" | "low" | "high" | "max" (NVIDIA API에 "medium"은 없음).
             지침서·법령 통독처럼 한 번에 정확히 뽑아야 하면 "max".
         model: 모델 id. 정확한 값은 list_models로 확인.
         max_chars: 전송 본문 최대 문자 수.
@@ -346,7 +346,7 @@ def ask_documents(
         pages: 페이지 범위.
         vision: 페이지 이미지 첨부 여부.
         out_path: 결과 저장 경로.
-        reasoning_effort: "none" | "low" | "medium" | "high" | "max".
+        reasoning_effort: "none" | "low" | "high" | "max" (NVIDIA API에 "medium"은 없음).
             지침서·법령 통독처럼 한 번에 정확히 뽑아야 하면 "max".
         model: 모델 id.
         max_chars: 전송 본문 최대 문자 수.

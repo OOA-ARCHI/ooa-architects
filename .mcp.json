@@ -4,50 +4,48 @@
     "context7": {
       "$comment": "Up-to-date documentation and code examples via Context7",
       "command": "/bin/bash",
-      "args": [
-        "-l",
-        "-c",
-        "exec npx -y @upstash/context7-mcp@latest"
-      ]
+      "args": ["-l", "-c", "exec npx -y @upstash/context7-mcp@latest"]
     },
     "sequential-thinking": {
       "$comment": "Step-by-step reasoning for complex problems",
       "command": "/bin/bash",
-      "args": [
-        "-l",
-        "-c",
-        "exec npx -y @modelcontextprotocol/server-sequential-thinking"
-      ]
+      "args": ["-l", "-c", "exec npx -y @modelcontextprotocol/server-sequential-thinking"]
     },
     "moai-lsp": {
       "$comment": "LSP code intelligence via moai binary (goto definition, find references, hover, diagnostics, rename)",
       "command": "moai",
-      "args": [
-        "mcp",
-        "lsp"
-      ],
+      "args": ["mcp", "lsp"],
       "timeout": 30
     },
     "kordoc": {
       "$comment": "HWP/HWPX/PDF/XLSX/DOCX <-> Markdown (parse/generate/fill/patch/diff) via kordoc (npm, chrisryugj/kordoc). 'kordoc generate' output confirmed opening cleanly in real Hancom Office (user-verified 2026-08-12 in OOA-ARCHI/Change-of-Building-Use) — safe to use as the primary tool for hwpx authoring/patching/form-filling. Verify output with the kordoc MCP's own `render_document` tool, not LibreOffice (its H2Orestart plugin fails to open kordoc's HWPX in sandboxed environments even though real Hancom Office opens it fine).",
       "command": "/bin/bash",
+      "args": ["-l", "-c", "exec npx -y kordoc mcp"]
+    },
+    "kimi-longdoc": {
+      "$comment": "Kimi-K3(1M 컨텍스트, NVIDIA build 경유) 장문 문서 통독/구조화 추출. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: NVIDIA_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 integrate.api.nvidia.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수. command를 bash 로그인쉘 경유로 실행하는 이유: 일부 클라우드 세션의 PATH 환경변수가 Windows 세미콜론 구분자로 오염되어 'uv'를 직접 command로 지정하면 PATH lookup에서 ENOENT가 남 — 로그인쉘(-l)이 /etc/profile.d 초기화를 거치며 PATH 앞에 /root/.local/bin(uv 설치 위치)을 다시 prepend해줘서 우회됨.",
+      "command": "/bin/bash",
       "args": [
         "-l",
         "-c",
-        "exec npx -y kordoc mcp"
-      ]
-    },
-    "kimi-longdoc": {
-      "$comment": "Kimi-K3(1M 컨텍스트, NVIDIA build 경유) 장문 문서 통독/구조화 추출. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: NVIDIA_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 integrate.api.nvidia.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수.",
-      "command": "uv",
-      "args": [
-        "run",
-        "--script",
-        ".claude/mcp-servers/kimi-longdoc/server.py"
+        "exec uv run --script .claude/mcp-servers/kimi-longdoc/server.py"
       ],
       "env": {
         "KIMI_MODEL": "moonshotai/kimi-k3",
         "NVIDIA_API_KEY": "${NVIDIA_API_KEY:-}"
+      }
+    },
+    "gemini-longdoc": {
+      "$comment": "Gemini 2.5 Pro(대형 컨텍스트, Google OpenAI 호환 엔드포인트 경유) 장문 문서 통독/구조화 추출 + Kimi-K3와의 2차 교차검증. kimi-longdoc과 동일 구조(probe/extract_document/ask_documents/list_models)를 미러링. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: GEMINI_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 generativelanguage.googleapis.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수. command를 bash 로그인쉘 경유로 실행하는 이유는 kimi-longdoc과 동일(PATH 오염 우회).",
+      "command": "/bin/bash",
+      "args": [
+        "-l",
+        "-c",
+        "exec uv run --script .claude/mcp-servers/gemini-longdoc/server.py"
+      ],
+      "env": {
+        "GEMINI_MODEL": "gemini-2.5-pro",
+        "GEMINI_API_KEY": "${GEMINI_API_KEY:-}"
       }
     }
   },

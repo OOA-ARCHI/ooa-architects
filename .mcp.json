@@ -4,23 +4,51 @@
     "context7": {
       "$comment": "Up-to-date documentation and code examples via Context7",
       "command": "/bin/bash",
-      "args": ["-l", "-c", "exec npx -y @upstash/context7-mcp@latest"]
+      "args": [
+        "-l",
+        "-c",
+        "exec npx -y @upstash/context7-mcp@latest"
+      ]
     },
     "sequential-thinking": {
       "$comment": "Step-by-step reasoning for complex problems",
       "command": "/bin/bash",
-      "args": ["-l", "-c", "exec npx -y @modelcontextprotocol/server-sequential-thinking"]
+      "args": [
+        "-l",
+        "-c",
+        "exec npx -y @modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "moai-lsp": {
       "$comment": "LSP code intelligence via moai binary (goto definition, find references, hover, diagnostics, rename)",
       "command": "moai",
-      "args": ["mcp", "lsp"],
+      "args": [
+        "mcp",
+        "lsp"
+      ],
       "timeout": 30
     },
     "kordoc": {
       "$comment": "HWP/HWPX/PDF/XLSX/DOCX <-> Markdown (parse/generate/fill/patch/diff) via kordoc (npm, chrisryugj/kordoc). 'kordoc generate' output confirmed opening cleanly in real Hancom Office (user-verified 2026-08-12 in OOA-ARCHI/Change-of-Building-Use) — safe to use as the primary tool for hwpx authoring/patching/form-filling. Verify output with the kordoc MCP's own `render_document` tool, not LibreOffice (its H2Orestart plugin fails to open kordoc's HWPX in sandboxed environments even though real Hancom Office opens it fine).",
       "command": "/bin/bash",
-      "args": ["-l", "-c", "exec npx -y kordoc mcp"]
+      "args": [
+        "-l",
+        "-c",
+        "exec npx -y kordoc mcp"
+      ]
+    },
+    "kimi-longdoc": {
+      "$comment": "Kimi-K3(1M 컨텍스트, NVIDIA build 경유) 장문 문서 통독/구조화 추출. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: NVIDIA_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 integrate.api.nvidia.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수.",
+      "command": "uv",
+      "args": [
+        "run",
+        "--script",
+        ".claude/mcp-servers/kimi-longdoc/server.py"
+      ],
+      "env": {
+        "KIMI_MODEL": "moonshotai/kimi-k3",
+        "NVIDIA_API_KEY": "${NVIDIA_API_KEY:-}"
+      }
     }
   },
   "staggeredStartup": {

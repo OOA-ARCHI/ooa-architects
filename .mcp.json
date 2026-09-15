@@ -36,7 +36,7 @@
       }
     },
     "gemini-longdoc": {
-      "$comment": "Gemini 2.5 Pro(대형 컨텍스트, Google OpenAI 호환 엔드포인트 경유) 장문 문서 통독/구조화 추출 + Kimi-K3와의 2차 교차검증. kimi-longdoc과 동일 구조(probe/extract_document/ask_documents/list_models)를 미러링. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: GEMINI_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 generativelanguage.googleapis.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수. command를 bash 로그인쉘 경유로 실행하는 이유는 kimi-longdoc과 동일(PATH 오염 우회).",
+      "$comment": "Gemini(대형 컨텍스트, Google OpenAI 호환 엔드포인트 경유) 장문 문서 통독/구조화 추출 + Kimi-K3와의 2차 교차검증. kimi-longdoc과 동일 구조(probe/extract_document/ask_documents/list_models)를 미러링. 레포에 커밋되어 로컬+클라우드 세션 모두에서 동작(상대경로 사용). 로컬/Team·Enterprise 클라우드: GEMINI_API_KEY 환경변수. Pro/Max 클라우드: claude.ai/code 환경 설정 > API credentials 에 generativelanguage.googleapis.com 호스트로 Bearer 키 등록(세션에 값이 노출되지 않음). 출력 수치는 후보값이며 면적·치수·법조항은 원문 페이지로 교차검증 필수. command를 bash 로그인쉘 경유로 실행하는 이유는 kimi-longdoc과 동일(PATH 오염 우회). 기본 모델은 gemini-3.5-flash-lite — 2026-09-15 확인 결과 gemini-2.5-pro/flash·gemini-3.1-pro는 신규 사용자 지원 종료(404) 또는 무료 티어 할당량 0(429)으로 막혀있고, gemini-3.5-flash-lite만 무료 API 키로 정상 응답함. 모델 가용성은 구글 쪽에서 계속 바뀌므로, 이 값이 다시 막히면 list_models로 재확인 후 갱신할 것.",
       "command": "/bin/bash",
       "args": [
         "-l",
@@ -44,7 +44,7 @@
         "exec uv run --script .claude/mcp-servers/gemini-longdoc/server.py"
       ],
       "env": {
-        "GEMINI_MODEL": "gemini-2.5-pro",
+        "GEMINI_MODEL": "gemini-3.5-flash-lite",
         "GEMINI_API_KEY": "${GEMINI_API_KEY:-}"
       }
     }

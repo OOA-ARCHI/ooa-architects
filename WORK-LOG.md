@@ -2,6 +2,8 @@
 
 2026년 7월 Claude Code 세션에서 진행한 작업 정리입니다. "왜 이렇게 만들었는지" 맥락을 남겨서, 다른 PC나 다른 세션에서 이어서 작업할 때 참고할 수 있게 했습니다. (최종 갱신: 2026-08-19)
 
+> **홈페이지를 실제로 수정하려면 `HOMEPAGE-GUIDE.md`를 먼저 보세요.** 이 문서(`WORK-LOG.md`)는 "무엇을 했는가" 기록이고, `HOMEPAGE-GUIDE.md`는 "어디를 어떻게 고치는가" 레시피입니다.
+
 ## 2026-08-19 세션 작업 내역
 
 - **카피라이트 footer 추가**: 5개 페이지(`index.html`, `about.html`, `project.html`, `contact.html`, `press.html`) 전부 footer가 아예 없던 상태였음. `.content-col` 하단에 `<footer class="site-footer">Copyright © 2023 오오에이건축사사무소. All Rights Reserved.</footer>` 추가, `css/style.css`에 `.site-footer`(상단 구분선 + 여백) 스타일 추가, 기존 `.small-print` 재사용. 연도는 About 페이지 History의 "2023 오오에이 스튜디오 설립" 기준. 데스크톱/모바일 뷰포트 렌더링 확인 완료

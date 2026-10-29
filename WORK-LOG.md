@@ -4,6 +4,28 @@
 
 > **홈페이지를 실제로 수정하려면 `HOMEPAGE-GUIDE.md`를 먼저 보세요.** 이 문서(`WORK-LOG.md`)는 "무엇을 했는가" 기록이고, `HOMEPAGE-GUIDE.md`는 "어디를 어떻게 고치는가" 레시피입니다.
 
+## 2026-10-28 세션 작업 내역 (Op.35 송지초등학교 추가)
+
+- **Op.35 송지초등학교 공간재구조화 교사동 개축** 신규 등록 (해남군 설계공모 2등작)
+  - `images/projects/35-songji-elementary-school/01~07.jpg` — 전부 2000x1034로 들어와 원본 그대로 사용(리사이즈 불필요)
+  - 슬라이드 순서: 조감도(메인) → 정면 외관 → 실내 도서공간 → 운동장측 전경 → 중정 → 모래놀이 마당 → 운동장측 정면 전경
+  - 처음 5장으로 올린 뒤 사용자 요청으로 2장 추가(조감도를 맨 앞, 정면 전경을 맨 뒤) → 기존 5장을 02~06으로 밀어서 순서 유지
+  - 메타: 2등작 / 전남 해남군 / 교육연구시설(초등학교) / 지상2층
+  - 사업명은 처음 "송지초등학교"로 올렸다가 "송지초등학교 공간재구조화 교사동 개축"으로 변경. **슬러그 `35-songji-elementary-school`은 유지** — 이름이 바뀌어도 주소를 바꾸면 공유 링크와 검색 색인이 깨지므로. Op.29 해운대여자중학교와 같은 방식
+  - 커밋: `3f533fe`(등록) → `c437c4c`(이미지 7장) → `b574955`(사업명 변경)
+- **`HOMEPAGE-GUIDE.md`에 §0 "다른 계정에서 작업하려면" 추가** — 저장소는 public이라 클론은 누구나 되지만 push는 협업자만 가능. 협업자 추가(방법 A) / 포크+PR(방법 B) 절차 기재
+- 검증은 Playwright로: 사이드바 링크 진입 → 슬라이드쇼 동작 → 이미지 decode → 데스크톱/모바일 가로 넘침 확인
+
+### 이번에 확인한 것 — 다음 세션 참고
+
+- **저장소는 public, 쓰기 권한은 2개 계정뿐**: `OOA-ARCHI`(admin), `mrsummer-ooa`(write). 다른 계정은 클론은 되지만 push 거부됨
+- **사이드바 링크는 `<details>`로 접혀 있어서** Playwright가 바로 클릭하면 "element is not visible" 타임아웃. 클릭 전에 `document.querySelectorAll('details').forEach(d => d.open = true)` 필요
+- **문자열 카운트 주의**: `data-slide`는 `data-slideshow`의 부분문자열, `slide-dot`은 `slide-dots`의 부분문자열이라 단순 `count()`로 재면 1개씩 더 나옴. 정규식으로 `<div class="slide tile-` / `<button class="slide-dot`을 세야 정확
+
+### 미완료 (Op.35 관련)
+
+- **About 수상이력 한 줄**: Works에는 올라갔으나 `about.html` 2026 블록에는 미반영. 공식 발주처명과 상 명칭 확인 필요 (2등은 기존 표기상 "최우수상(2등)")
+
 ## 2026-08-19 세션 작업 내역
 
 - **카피라이트 footer 추가**: 5개 페이지(`index.html`, `about.html`, `project.html`, `contact.html`, `press.html`) 전부 footer가 아예 없던 상태였음. `.content-col` 하단에 `<footer class="site-footer">Copyright © 2023 오오에이건축사사무소. All Rights Reserved.</footer>` 추가, `css/style.css`에 `.site-footer`(상단 구분선 + 여백) 스타일 추가, 기존 `.small-print` 재사용. 연도는 About 페이지 History의 "2023 오오에이 스튜디오 설립" 기준. 데스크톱/모바일 뷰포트 렌더링 확인 완료

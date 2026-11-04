@@ -12,7 +12,7 @@
   - `favicon-ooa-48.png` / `-96.png` / `-192.png`, `apple-touch-icon-ooa.png`(180)
   - 루트 `favicon.ico`를 16·32·48 다중 크기로 교체(이전 16×16 한 장)
   - 옛 파일(`favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`)은 지우지 않고 남김
-  - 배포 후 IndexNow로 5개 페이지 수집 요청
+  - 배포 후 IndexNow로 5개 페이지 수집 요청 — 네이버 200, api.indexnow.org 202. 예전 주소 `api.searchadvisor.naver.com`은 2026-11-04 기준 DNS 조회 실패 → `searchadvisor.naver.com/indexnow`로 보냄(아래 명령도 고침)
 - **다음 확인**: 2026-11-18 전후 네이버에서 "오오에이건축사사무소" 검색 → 홈페이지 앞 아이콘이 노란 OOA인지 확인. 그대로면 서치어드바이저 로그인 → 웹 페이지 수집 요청을 수동으로 한 번 더
 
 ## 2026-10-28 세션 작업 내역 (Op.35 송지초등학교 추가)
@@ -65,7 +65,7 @@
 - 페이지를 고친 뒤 배포가 끝나면 아래로 수집 요청 (urlList에 바뀐 페이지만 넣으면 됨):
 
 ```
-curl -sS -X POST https://api.searchadvisor.naver.com/indexnow \
+curl -sS -X POST https://searchadvisor.naver.com/indexnow \
   -H "Content-Type: application/json; charset=utf-8" \
   -d '{"host":"www.ooa-architects.com","key":"b742531ae8a6332464b96502218d68cf","keyLocation":"https://www.ooa-architects.com/b742531ae8a6332464b96502218d68cf.txt","urlList":["https://www.ooa-architects.com/"]}'
 ```

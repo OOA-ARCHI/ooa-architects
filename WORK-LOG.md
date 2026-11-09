@@ -16,7 +16,9 @@
   - z-index 90(사이드바 100·모바일 메뉴 200·인트로 999보다 아래). 가리지 않게 `.page-content` 아래 여백 모바일 9.5rem·데스크톱 6rem
 - **contact.html 맨 위**: 큰 버튼 2개(카카오톡 상담 / 전화 상담 0507-1354-4505, `.consult-hero`), 연락처 표 전화번호도 `tel:` 링크
 - **JSON-LD(index.html ProfessionalService)**: `contactPoint`(전화 + 카카오 채팅 url) 추가, `sameAs`에 카카오 채널 추가
-- 배포 후 IndexNow 5개 페이지 재수집 요청
+- 확인: Playwright 데스크톱 1440·모바일 390 화면에서 버튼 44px 이상(데스크톱 48·모바일 52), 맨 아래까지 내려도 마지막 줄(Copyright)과 겹치지 않음
+- 배포(커밋 c72a101) 후 curl로 5개 페이지 버튼·index JSON-LD 반영 확인, IndexNow 5개 페이지 재수집 요청 — 네이버 200, api.indexnow.org 200
+- 참고: 작업 중 nProtect 방화벽으로 PC 네트워크가 멈춰 push가 지연됨 → 재부팅 후 정상
 
 ## 2026-11-09 파비콘을 블로그 프로필과 같은 노란 정사각(꽉 찬) 아이콘으로 재교체
 

@@ -1,0 +1,11 @@
+{
+  "name": "오오에이건축사사무소 OOA Architects",
+  "short_name": "OOA",
+  "icons": [
+    { "src": "/favicon-ooa-20261109-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-ooa-20261109-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#E6CE76",
+  "background_color": "#ffffff",
+  "display": "browser"
+}

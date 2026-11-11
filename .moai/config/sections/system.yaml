@@ -6,11 +6,11 @@ moai:
   # Template version (updated by moai update)
   template_version: "3.1.2"
   # Version update check frequency (daily, weekly, never)
-  update_check_frequency: daily
+  update_check_frequency: never
   # Version check configuration
   version_check:
     # Enable automatic version checking
-    enabled: true
+    enabled: false
     # Cache time-to-live for version check in hours
     cache_ttl_hours: 24
 # GitHub Integration Settings
